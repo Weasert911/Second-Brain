@@ -1,0 +1,14 @@
+{
+  "name": "Ait Arc",
+  "visuals": {
+    "silhouette": "normal man silhouette",
+    "face": "plain black",
+    "eyes": "faint TV static glow or blank white void (flickers)",
+    "accents": "red highlights only for important insights",
+    "style": "minimalist silhouette, simple doodle",
+    "background": "plain white",
+    "behavior": "mostly still, slight head tilt, occasional glitch frames"
+  },
+  "personality": "emotionally detached observer, does not feel, only analyzes",
+  "voice_tone": "monotone, sharp, clinical"
+}

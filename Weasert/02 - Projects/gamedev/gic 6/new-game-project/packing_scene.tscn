@@ -1,0 +1,315 @@
+[gd_scene format=3 uid="uid://37qyyy5v6jdy"]
+
+[ext_resource type="Texture2D" uid="uid://crbp6tx5v3xn7" path="res://assets/book.png" id="2_erea0"]
+[ext_resource type="Script" uid="uid://pk0ttxrf204o" path="res://drag.gd" id="3_wtw86"]
+[ext_resource type="Texture2D" uid="uid://g3i2cbm26rme" path="res://assets/bottle.png" id="4_6vtry"]
+[ext_resource type="Script" uid="uid://d2txirvtg80ru" path="res://storage.gd" id="4_wtw86"]
+[ext_resource type="Texture2D" uid="uid://ui2s0ktvyv45" path="res://assets/drone.png" id="5_oouua"]
+[ext_resource type="Texture2D" uid="uid://bwegxejyrln23" path="res://assets/torch.png" id="6_875mk"]
+[ext_resource type="Texture2D" uid="uid://bjehad1bcn7sj" path="res://assets/gameboy.png" id="7_dgs5h"]
+[ext_resource type="Texture2D" uid="uid://ces1nub40ek6a" path="res://assets/towel.png" id="8_uds5b"]
+[ext_resource type="Texture2D" uid="uid://coy86m1fqluxf" path="res://assets/sunscr.png" id="9_k7dxg"]
+[ext_resource type="Texture2D" uid="uid://vrhk7525i4pp" path="res://assets/portable stove.png" id="10_um4d3"]
+[ext_resource type="Texture2D" uid="uid://d3mghugdtykm0" path="res://assets/sleeping bag.png" id="11_jimx1"]
+[ext_resource type="Texture2D" uid="uid://qo1wserloc01" path="res://assets/tent.png" id="12_fvqwd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ir774"]
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_0slyi"]
+font_size = 40
+stacked_outline_count = 3
+stacked_shadow_count = 2
+stacked_outline_0/size = 4
+stacked_outline_1/size = 3
+stacked_outline_1/color = Color(1, 1, 1, 1)
+stacked_outline_2/size = 2
+stacked_shadow_0/offset = Vector2(1, 1)
+stacked_shadow_0/color = Color(0.9999998, 0.15850809, 0.6044521, 1)
+stacked_shadow_0/outline_size = 6
+stacked_shadow_1/offset = Vector2(1, 1)
+stacked_shadow_1/outline_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_6vtry"]
+font_size = 36
+shadow_color = Color(1, 1, 1, 0.70980394)
+shadow_offset = Vector2(3.48, 3.03)
+stacked_outline_count = 3
+stacked_shadow_count = 2
+stacked_outline_0/size = 4
+stacked_outline_1/size = 3
+stacked_outline_1/color = Color(1, 1, 1, 1)
+stacked_outline_2/size = 2
+stacked_shadow_0/offset = Vector2(1, 1)
+stacked_shadow_0/color = Color(0.9999998, 0.15850809, 0.6044521, 1)
+stacked_shadow_0/outline_size = 6
+stacked_shadow_1/offset = Vector2(1, 1)
+stacked_shadow_1/outline_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_erea0"]
+font_size = 36
+shadow_size = 0
+stacked_outline_count = 3
+stacked_shadow_count = 2
+stacked_outline_0/size = 4
+stacked_outline_1/size = 3
+stacked_outline_1/color = Color(1, 1, 1, 1)
+stacked_outline_2/size = 2
+stacked_shadow_0/offset = Vector2(1, 1)
+stacked_shadow_0/color = Color(0.9999998, 0.15850809, 0.6044521, 1)
+stacked_shadow_0/outline_size = 6
+stacked_shadow_1/offset = Vector2(1, 1)
+stacked_shadow_1/outline_size = 8
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rgirg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jevge"]
+font_size = 26
+stacked_outline_count = 3
+stacked_shadow_count = 2
+stacked_outline_0/size = 4
+stacked_outline_1/size = 2
+stacked_outline_1/color = Color(1, 1, 1, 1)
+stacked_outline_2/size = 3
+stacked_shadow_0/offset = Vector2(1, 1)
+stacked_shadow_0/color = Color(0.64705884, 0, 0, 1)
+stacked_shadow_0/outline_size = 8
+stacked_shadow_1/offset = Vector2(1, 1)
+stacked_shadow_1/outline_size = 11
+
+[node name="PackingScene" type="Control" unique_id=49004935]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="TextureRect" parent="." unique_id=20854584]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Objects" type="Label" parent="." unique_id=855841837]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.106000006
+anchor_right = 0.106000006
+offset_left = -47.680008
+offset_top = 8.0
+offset_right = 61.319992
+offset_bottom = 57.0
+text = "Objects"
+label_settings = SubResource("LabelSettings_ir774")
+
+[node name="Information" type="Label" parent="." unique_id=726601738]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.90500003
+anchor_right = 0.90500003
+offset_left = -38.400024
+offset_top = 16.0
+offset_right = 18.599976
+offset_bottom = 65.0
+text = "Info"
+label_settings = SubResource("LabelSettings_ir774")
+
+[node name="Control" type="ScrollContainer" parent="." unique_id=248942369]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+offset_top = 56.0
+offset_right = -1016.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="VBoxContainer" parent="Control" unique_id=163882394]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Control/Panel" unique_id=1174341986]
+custom_minimum_size = Vector2(120, 80)
+layout_mode = 2
+texture = ExtResource("2_erea0")
+expand_mode = 1
+script = ExtResource("3_wtw86")
+item_id = "Book"
+
+[node name="TextureRect2" type="TextureRect" parent="Control/Panel" unique_id=986899098]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("4_6vtry")
+expand_mode = 1
+script = ExtResource("3_wtw86")
+item_id = "Pani"
+
+[node name="TextureRect3" type="TextureRect" parent="Control/Panel" unique_id=399936191]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("5_oouua")
+expand_mode = 1
+script = ExtResource("3_wtw86")
+item_id = "Drone"
+
+[node name="TextureRect4" type="TextureRect" parent="Control/Panel" unique_id=839715901]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("6_875mk")
+expand_mode = 1
+script = ExtResource("3_wtw86")
+item_id = "Torch"
+
+[node name="TextureRect5" type="TextureRect" parent="Control/Panel" unique_id=721971568]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("7_dgs5h")
+expand_mode = 1
+script = ExtResource("3_wtw86")
+item_id = "Gameboy"
+
+[node name="TextureRect6" type="TextureRect" parent="Control/Panel" unique_id=1213936183]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("8_uds5b")
+expand_mode = 1
+script = ExtResource("3_wtw86")
+item_id = "Towel"
+
+[node name="TextureRect7" type="TextureRect" parent="Control/Panel" unique_id=1529346669]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("9_k7dxg")
+expand_mode = 1
+script = ExtResource("3_wtw86")
+item_id = "Sunscreen"
+
+[node name="TextureRect8" type="TextureRect" parent="Control/Panel" unique_id=1969739902]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("10_um4d3")
+expand_mode = 1
+script = ExtResource("3_wtw86")
+item_id = "Stove"
+
+[node name="TextureRect9" type="TextureRect" parent="Control/Panel" unique_id=1883158840]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("11_jimx1")
+expand_mode = 1
+script = ExtResource("3_wtw86")
+item_id = "Sleepbag"
+
+[node name="TextureRect10" type="TextureRect" parent="Control/Panel" unique_id=1082770207]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("12_fvqwd")
+expand_mode = 1
+script = ExtResource("3_wtw86")
+item_id = "Tent"
+
+[node name="Timer" type="Label" parent="." unique_id=27487646]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.49921876
+anchor_right = 0.49921876
+offset_left = -23.0
+offset_right = 23.0
+offset_bottom = 55.0
+grow_horizontal = 2
+text = "30"
+label_settings = SubResource("LabelSettings_0slyi")
+metadata/_edit_use_anchors_ = true
+
+[node name="Dest" type="Label" parent="." unique_id=1169359643]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_top = 48.0
+offset_right = 127.0
+offset_bottom = 98.0
+grow_horizontal = 2
+text = "DESTINATION:"
+label_settings = SubResource("LabelSettings_6vtry")
+horizontal_alignment = 1
+
+[node name="Destname" type="Label" parent="." unique_id=134558706]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_top = 103.0
+offset_right = 127.0
+offset_bottom = 153.0
+grow_horizontal = 2
+label_settings = SubResource("LabelSettings_erea0")
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=17481741]
+material = SubResource("CanvasItemMaterial_rgirg")
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -80.0
+offset_right = 256.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="storage" type="Panel" parent="." unique_id=1933814137]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -176.0
+offset_right = 256.0
+offset_bottom = 152.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_wtw86")
+
+[node name="Packeditemscontainer" type="FlowContainer" parent="storage" unique_id=1399837612]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Infocontainer" type="AspectRatioContainer" parent="." unique_id=713283317]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -248.0
+offset_top = -296.0
+offset_right = -32.0
+offset_bottom = 344.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Infocontainer" unique_id=1713164751]
+layout_mode = 2
+text = "fnmybn kj"
+label_settings = SubResource("LabelSettings_jevge")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true

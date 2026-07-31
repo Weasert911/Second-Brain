@@ -1,0 +1,14 @@
+Write a 20-45 second YouTube Short script.
+
+Style:
+- Fast, punchy, detached, and unsettling
+- Immediate recognition
+- No intro, no branding, no buildup
+
+Structure:
+- 0-2s: Immediate recognition hook (e.g., "You've [behavior] without realizing why.")
+- 2-20s: Rapid examples
+- 20-35s: Behavior explanation
+- 35-45s: Disturbing insight / ending
+
+Focus on instant relatability and uncomfortable recognition.

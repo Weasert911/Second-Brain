@@ -1,0 +1,522 @@
+[gd_scene format=3 uid="uid://dlf3dxxgh2m2y"]
+
+[ext_resource type="Script" uid="uid://cfu4bc10in2pc" path="res://Menu/buttons.gd" id="1_e8kt5"]
+
+[sub_resource type="Animation" id="Animation_e8kt5"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Control2/Quit:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(24, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Control2/Quit:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(376, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Control2/Credits:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(24, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Control2/Credits:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(280, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/Control2/Start:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(24, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control/Control2/Start:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(183.99998, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control/Control2/Quit:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Control/Control2/Credits:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Control/Control2/Start:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Control/Credits_panel:position:x")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(32, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Control/Credits_panel:position:y")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-688, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Control/Credits_panel:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_q3kb3"]
+resource_name = "credits_closed"
+length = 2.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Control2/Start:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-224, 0, 0, 0.33333334, 41.333336, 24, -0.33333334, -57.333336, 0, 0),
+"times": PackedFloat32Array(0, 2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Control2/Start:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(184, 0, 0, 0.33333334, 0, 184, -0.33333334, 0, 0, 0),
+"times": PackedFloat32Array(0, 2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Control2/Credits:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-224, 0, 0, 0.34444445, 41.333336, 24, -0.33333334, -57.333336, 0, 0),
+"times": PackedFloat32Array(0.1, 2.0666666)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Control2/Credits:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(280, 0, 0, 0.33333334, 0, 280, -0.33333334, 0, 0, 0),
+"times": PackedFloat32Array(0, 2)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/Control2/Quit:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-224, 0, 0, 0.3555556, 41.333336, 24, -0.33333334, -57.333336, 0, 0),
+"times": PackedFloat32Array(0.16666667, 2.1333334)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control/Control2/Quit:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(376, 0, 0, 0.33333334, 0, 376, -0.33333334, 0, 0, 0),
+"times": PackedFloat32Array(0, 2)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control/Credits_panel:position:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(32, 0, 0, 0.33333334, 0, 1000, -0.0016666651, -161.33333, 0, 0),
+"times": PackedFloat32Array(0.4, 2.2666667)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Control/Credits_panel:position:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(32, 0, 0, 0.33333334, -120, 800, -0.0016666651, 0, 0, 0),
+"times": PackedFloat32Array(0.4, 2.2666667)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Control/Control2/Quit:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Control/Control2/Credits:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Control/Control2/Start:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Control/Credits_panel:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.2823984, -0.16666667, -0.0470664, 0, 0),
+"times": PackedFloat32Array(0.63333344, 2)
+}
+
+[sub_resource type="Animation" id="Animation_mxk1q"]
+resource_name = "credits_open"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Control2/Quit:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(24, -0.25, 0, 0.25, 0, 24, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Control2/Quit:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(376, -0.25, 0, 0.25, 0, 856, -0.16666667, -80, 0, 0),
+"times": PackedFloat32Array(0, 2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Control2/Credits:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(24, -0.25, 0, 0.25, 0, 64.126686, -0.1777778, -7.238096, 0.13333333, 5.428571, 132.559, -0.05166666, -2.316818, 0.08166667, 3.662068),
+"times": PackedFloat32Array(0.13333334, 1.2, 1.51)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Control2/Credits:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(280, -0.25, 0, 0.25, 0, 530.2635, -0.1777778, -45.71429, 0.13333333, 34.285713, 617.733, -0.05166666, -14.837148, 0.08166667, 23.45227, 760, -0.21666667, -61.87433, 0, 0),
+"times": PackedFloat32Array(0.033333335, 1.2, 1.51, 2)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/Control2/Start:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(24, -0.25, 0, 0.25, 0, -204.805, -0.17222223, 38.134167, 0, 0),
+"times": PackedFloat32Array(0.5, 2)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control/Control2/Start:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(183.99998, -0.25, 0, 0.25, 0, 697.195, -0.33333334, -85.5325, 0, 0),
+"times": PackedFloat32Array(0, 2)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control/Control2/Quit:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.096666664, 0, 0, 0, -0.10471976, -0.23666668, 0.017453292, 0, 0),
+"times": PackedFloat32Array(0, 0.58, 2)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Control/Control2/Credits:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.10471976, -0.075, -0.017453294, 0, 0),
+"times": PackedFloat32Array(0, 0.45)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Control/Control2/Start:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.15707964, -0.14, 0.025032628, 0.19333336, -0.034568872, -0.35760897, -0.16666667, 0.059601497, 0, 0, 0.20071286, -0.07833332, -0.09305364, 0, 0),
+"times": PackedFloat32Array(0, 0.9, 1.2, 1.67)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Control/Credits_panel:position:x")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(32, -0.25, 0, 0.25, 0, 32, -0.275, 0, 0, 0, 32, -0.058333337, 0, 0, 0),
+"times": PackedFloat32Array(0, 1.65, 2)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Control/Credits_panel:position:y")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-688, -0.25, 0, 0.25, 0, 60, -0.275, -124.66667, 0, 0, 32, -0.058333337, 4.6666665, 0, 0),
+"times": PackedFloat32Array(0, 1.65, 2)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Control/Credits_panel:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q3kb3"]
+_data = {
+&"RESET": SubResource("Animation_e8kt5"),
+&"credits_closed": SubResource("Animation_q3kb3"),
+&"credits_open": SubResource("Animation_mxk1q")
+}
+
+[node name="main menu" type="CanvasLayer" unique_id=1157623279]
+
+[node name="Control" type="Control" parent="." unique_id=1243884509]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="Control" unique_id=879522511]
+
+[node name="Control2" type="Control" parent="Control" unique_id=1591517881]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e8kt5")
+
+[node name="Start" type="Button" parent="Control/Control2" unique_id=934586906]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.48900002
+anchor_bottom = 0.48900002
+offset_left = 24.0
+offset_top = -168.08003
+offset_right = 228.99658
+offset_bottom = -96.08003
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Credits" type="Button" parent="Control/Control2" unique_id=1057877301]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.64400005
+anchor_bottom = 0.64400005
+offset_left = 24.0
+offset_top = -183.68005
+offset_right = 229.00159
+offset_bottom = -111.68005
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Quit" type="Button" parent="Control/Control2" unique_id=329077511]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.8
+anchor_bottom = 0.8
+offset_left = 24.0
+offset_top = -200.0
+offset_right = 229.0011
+offset_bottom = -128.0
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Credits_panel" type="AspectRatioContainer" parent="Control" unique_id=1163513944]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -608.0
+offset_top = -1048.0
+offset_right = 480.0039
+offset_bottom = -471.99988
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 1.9
+metadata/_edit_group_ = true
+
+[node name="Panel" type="Panel" parent="Control/Credits_panel" unique_id=1222936934]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/Credits_panel/Panel" unique_id=1978679491]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Chide" type="Button" parent="Control/Credits_panel/Panel" unique_id=241502336]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_top = 18.315796
+offset_right = -24.0
+offset_bottom = 58.315796
+grow_horizontal = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=534105945]
+libraries/ = SubResource("AnimationLibrary_q3kb3")
+
+[connection signal="pressed" from="Control/Control2/Start" to="Control/Control2" method="_on_start_pressed"]
+[connection signal="pressed" from="Control/Control2/Credits" to="Control/Control2" method="_on_credits_pressed"]
+[connection signal="pressed" from="Control/Control2/Quit" to="Control/Control2" method="_on_quit_pressed"]
+[connection signal="pressed" from="Control/Credits_panel/Panel/Chide" to="Control/Control2" method="_on_chide_pressed"]

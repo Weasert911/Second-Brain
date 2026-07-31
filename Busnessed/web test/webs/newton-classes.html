@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Newton Classes – Fall in Love with Learning</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Source Sans Pro', sans-serif;
+      background: #fff;
+      color: #1A1A1A;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #1A1A1A; }
+    ::-webkit-scrollbar-thumb { background: #DC2626; border-radius: 10px; }
+
+    .container { width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 100px 0; position: relative; }
+
+    /* ----- Typography ----- */
+    h1, h2, h3, h4, .section-title, .heading-font {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+    }
+    .section-title {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      color: #fff;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title .red { color: #DC2626; }
+    .section-sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.75);
+      margin-top: 8px;
+      max-width: 500px;
+    }
+
+    /* ----- Animations ----- */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
+    .d4 { transition-delay: 0.4s; }
+
+    /* ----- NAV ----- */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 16px 0;
+      background: #1A1A1A;
+      transition: padding 0.3s, box-shadow 0.3s;
+    }
+    nav.scrolled { padding: 10px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .nav-brand .badge {
+      background: #DC2626;
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: rgba(255,255,255,0.8);
+      transition: color 0.25s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: #DC2626;
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: #DC2626; }
+    .nav-links a:hover::after { width: 100%; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 28px; height: 3px;
+      background: #fff;
+      border-radius: 4px;
+      transition: 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    .mobile-nav {
+      position: fixed;
+      top: 0; right: -100%;
+      width: 300px; height: 100vh;
+      background: #1A1A1A;
+      border-left: 3px solid #DC2626;
+      padding: 90px 40px 40px;
+      transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      z-index: 999;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .mobile-nav.open { right: 0; }
+    .mobile-nav a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      transition: color 0.25s;
+    }
+    .mobile-nav a:hover { color: #DC2626; }
+    .overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 998;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s;
+    }
+    .overlay.show { opacity: 1; pointer-events: auto; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* ----- HERO ----- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: #111111;
+      overflow: hidden;
+      padding: 140px 0 100px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%; right: -20%;
+      width: 600px; height: 600px;
+      background: rgba(220,38,38,0.08);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 8px;
+      background: #DC2626;
+    }
+
+    /* Diagonal stripe */
+    .hero-stripe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, transparent 48%, rgba(220,38,38,0.12) 48%, rgba(220,38,38,0.12) 52%, transparent 52%);
+      pointer-events: none;
+    }
+
+    /* 3D Pencil */
+    .pencil {
+      position: absolute;
+      right: 5%;
+      top: 15%;
+      width: 600px; height: 24px;
+      background: linear-gradient(to bottom, #DC2626, #B91C1C);
+      transform: rotate(-15deg);
+      transform-origin: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.3), inset 0 -2px 4px rgba(0,0,0,0.1);
+      border-radius: 0 3px 3px 0;
+      z-index: 1;
+    }
+    .pencil-tip {
+      position: absolute;
+      left: -28px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0; height: 0;
+      border-top: 16px solid transparent;
+      border-bottom: 16px solid transparent;
+      border-right: 28px solid #B91C1C;
+      filter: drop-shadow(0 8px 6px rgba(0,0,0,0.2));
+    }
+    .pencil-tip::after {
+      content: '';
+      position: absolute;
+      left: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0; height: 0;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-right: 12px solid #333;
+    }
+    .pencil-line1, .pencil-line2 {
+      position: absolute;
+      top: 50%;
+      height: 1.5px;
+      background: rgba(0,0,0,0.15);
+      width: 60%;
+    }
+    .pencil-line1 { top: 30%; left: 10%; }
+    .pencil-line2 { top: 65%; left: 10%; }
+
+    @media (max-width: 900px) {
+      .pencil { width: 350px; height: 18px; right: 2%; top: 10%; }
+      .pencil-tip { left: -20px; border-right-width: 20px; border-top-width: 12px; border-bottom-width: 12px; }
+      .pencil-tip::after { left: -8px; border-right-width: 8px; border-top-width: 4px; border-bottom-width: 4px; }
+    }
+    @media (max-width: 600px) {
+      .pencil { width: 200px; height: 12px; right: 1%; top: 8%; }
+      .pencil-tip { left: -14px; border-right-width: 14px; border-top-width: 8px; border-bottom-width: 8px; }
+      .pencil-tip::after { left: -6px; border-right-width: 6px; border-top-width: 3px; border-bottom-width: 3px; }
+    }
+
+    .hero-content { position: relative; z-index: 2; max-width: 700px; }
+    .hero-tag {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #DC2626;
+      background: rgba(220,38,38,0.12);
+      padding: 6px 18px;
+      border-radius: 4px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(3rem, 7vw, 5rem);
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+    .hero h1 .red { color: #DC2626; }
+    .hero p {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.8);
+      max-width: 480px;
+      margin: 16px 0 32px;
+      line-height: 1.6;
+    }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 36px;
+      border-radius: 4px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-yellow {
+      background: #DC2626;
+      color: #fff;
+    }
+    .btn-yellow:hover { background: #B91C1C; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(220,38,38,0.35); }
+    .btn-outline-light {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.5);
+    }
+    .btn-outline-light:hover { border-color: #fff; background: rgba(255,255,255,0.1); transform: translateY(-3px); }
+
+    /* ----- STATS ----- */
+    .stats-section {
+      background: #DC2626;
+      position: relative;
+    }
+    .stats-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: #DC2626;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(220,38,38,0.15);
+      padding: 40px 24px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .stat-card:hover { transform: translateY(-6px); background: rgba(220,38,38,0.06); }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: #DC2626;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s;
+    }
+    .stat-card:hover::before { transform: scaleX(1); }
+    .stat-number {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 2.8rem;
+      color: #DC2626;
+      line-height: 1;
+    }
+    .stat-label {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: rgba(255,255,255,0.6);
+      margin-top: 6px;
+    }
+    @media (max-width: 600px) { .stats-grid { grid-template-columns: 1fr; } }
+
+    /* ----- WHY ----- */
+    .why-section {
+      background: #111111;
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .why-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 40px 24px 36px;
+      text-align: center;
+      position: relative;
+      transition: all 0.4s;
+    }
+    .why-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-6px); }
+    .why-medal {
+      position: absolute;
+      top: -12px; right: 12px;
+      background: #DC2626;
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 3px 12px;
+      border-radius: 2px;
+    }
+    .why-icon {
+      width: 60px; height: 60px;
+      margin: 0 auto 16px;
+      background: rgba(220,38,38,0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #DC2626;
+      transition: background 0.3s, color 0.3s;
+    }
+    .why-card:hover .why-icon { background: #DC2626; color: #fff; }
+    .why-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .why-card p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.5;
+    }
+    @media (max-width: 900px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .why-grid { grid-template-columns: 1fr; } }
+
+    /* ----- COURSES ----- */
+    .courses-section {
+      background: #1A1A1A;
+    }
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .course-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 32px 24px;
+      transition: all 0.3s;
+      position: relative;
+    }
+    .course-card:hover { border-color: #DC2626; transform: translateY(-4px); background: rgba(220,38,38,0.04); }
+    .course-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .course-card p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 10px;
+    }
+    .course-badge {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #fff;
+      background: #DC2626;
+      padding: 3px 12px;
+      border-radius: 2px;
+    }
+    @media (max-width: 768px) { .courses-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 450px) { .courses-grid { grid-template-columns: 1fr; } }
+
+    /* ----- FACULTY ----- */
+    .faculty-section {
+      background: #1A1A1A;
+    }
+    .faculty-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .faculty-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 40px 28px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .faculty-card:hover { transform: translateY(-6px); background: rgba(255,255,255,0.1); border-color: #DC2626; }
+    .faculty-avatar {
+      width: 90px; height: 90px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #DC2626, #B91C1C);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.7rem;
+      color: #1A1A1A;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .faculty-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .faculty-card .role {
+      font-size: 0.85rem;
+      color: #DC2626;
+      font-weight: 600;
+      margin: 2px 0 8px;
+    }
+    .faculty-card p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
+    }
+    @media (max-width: 768px) { .faculty-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 450px) { .faculty-grid { grid-template-columns: 1fr; } }
+
+    /* ----- TESTIMONIALS ----- */
+    .testimonials-section {
+      background: #1A1A1A;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testimonial-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 36px 28px;
+      position: relative;
+      transition: all 0.3s;
+    }
+    .testimonial-card:hover { border-color: #DC2626; transform: translateY(-4px); }
+    .testimonial-card .quote-icon {
+      color: #DC2626;
+      margin-bottom: 12px;
+    }
+    .testimonial-card .quote {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-author .avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #DC2626, #B91C1C);
+    }
+    .testimonial-author .name { font-weight: 700; color: #fff; font-size: 0.92rem; }
+    .testimonial-author .detail { font-size: 0.75rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.5px; }
+    @media (max-width: 768px) { .testimonials-grid { grid-template-columns: 1fr; } }
+
+    /* ----- GALLERY ----- */
+    .gallery-section {
+      background: #1A1A1A;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .gallery-item {
+      aspect-ratio: 4 / 3;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: rgba(255,255,255,0.4);
+      transition: all 0.3s;
+    }
+    .gallery-item:hover { border-color: #DC2626; transform: scale(1.04); background: rgba(220,38,38,0.06); }
+    .gallery-item:nth-child(2) { background: rgba(255,255,255,0.04); }
+    .gallery-item:nth-child(3) { background: rgba(255,255,255,0.08); }
+    .gallery-item:nth-child(4) { background: rgba(255,255,255,0.04); }
+    .gallery-item:nth-child(5) { background: rgba(255,255,255,0.08); }
+    .gallery-item:nth-child(6) { background: rgba(255,255,255,0.04); }
+    .gallery-item:nth-child(7) { background: rgba(255,255,255,0.08); }
+    .gallery-item:nth-child(8) { background: rgba(255,255,255,0.04); }
+    @media (max-width: 768px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 450px) { .gallery-grid { grid-template-columns: 1fr; } }
+
+    /* ----- CONTACT ----- */
+    .contact-section {
+      background: #1A1A1A;
+    }
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .contact-form input,
+    .contact-form textarea {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 0.95rem;
+      padding: 16px 18px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 4px;
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+      outline: none;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color: rgba(255,255,255,0.35); }
+    .contact-form input:focus,
+    .contact-form textarea:focus { border-color: #DC2626; background: rgba(255,255,255,0.1); }
+    .contact-form textarea { resize: vertical; min-height: 120px; }
+    .contact-form button { align-self: flex-start; }
+    .contact-info { display: flex; flex-direction: column; gap: 20px; }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      transition: color 0.3s;
+    }
+    .contact-item:hover { color: #DC2626; }
+    .contact-item i { color: #DC2626; flex-shrink: 0; }
+    .contact-map {
+      margin-top: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .contact-map iframe { width: 100%; height: 220px; border: 0; display: block; filter: grayscale(0.6); }
+    @media (max-width: 768px) { .contact-wrap { grid-template-columns: 1fr; gap: 32px; } }
+
+    /* ----- FOOTER ----- */
+    footer {
+      padding: 48px 0;
+      background: #0f0f0f;
+      border-top: 3px solid #DC2626;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-brand {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .footer-brand span { color: #DC2626; }
+    .footer-text { font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+    .footer-socials { display: flex; gap: 12px; }
+    .footer-socials a {
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.6);
+      transition: all 0.3s;
+      border-radius: 4px;
+    }
+    .footer-socials a:hover { background: #DC2626; border-color: #DC2626; color: #fff; transform: translateY(-3px); }
+    @media (max-width: 500px) { .footer-inner { flex-direction: column; text-align: center; } }
+
+    /* heading container */
+    .section-head-wrap { margin-bottom: 48px; }
+  </style>
+</head>
+<body>
+
+  <!-- OVERLAY -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- MOBILE NAV -->
+  <ul class="mobile-nav" id="mobileNav">
+    <li><a href="#hero" onclick="closeNav()">Home</a></li>
+    <li><a href="#stats" onclick="closeNav()">Stats</a></li>
+    <li><a href="#why" onclick="closeNav()">Why Us</a></li>
+    <li><a href="#courses" onclick="closeNav()">Courses</a></li>
+    <li><a href="#faculty" onclick="closeNav()">Faculty</a></li>
+    <li><a href="#testimonials" onclick="closeNav()">Testimonials</a></li>
+    <li><a href="#gallery" onclick="closeNav()">Gallery</a></li>
+    <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+  </ul>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="container nav-inner">
+      <div class="nav-brand"><img src="newton-classes.png" alt="Newton Classes" style="height:32px;width:auto;margin-right:8px;border-radius:6px;vertical-align:middle">Newton <span class="badge">Classes</span></div>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#stats">Stats</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#faculty">Faculty</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-stripe"></div>
+
+    <!-- 3D Pencil -->
+    <div class="pencil">
+      <div class="pencil-tip"></div>
+      <div class="pencil-line1"></div>
+      <div class="pencil-line2"></div>
+    </div>
+
+    <div class="container hero-content fade-up visible">
+      <span class="hero-tag">Karnal's Premier Coaching Centre</span>
+      <h1>Fall in Love<br>with <span class="red">Learning.</span></h1>
+      <p>Newton Classes — turning academic pressure into pure passion. All subjects, Classes 9–12, CBSE &amp; Haryana Board.</p>
+      <img src="newton-classes.png" alt="Newton Classes Logo" style="height:100px;width:auto;margin:0 auto 20px;display:block;border-radius:12px;border:2px solid rgba(220,38,38,0.3);">
+      <div class="hero-btns">
+        <a href="#contact" class="btn btn-yellow">
+          <i data-lucide="phone" size="18"></i> +91 99968 98899
+        </a>
+        <a href="#courses" class="btn btn-outline-light">
+          <i data-lucide="book-open" size="18"></i> Explore Courses
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section stats-section" id="stats">
+    <div class="container">
+      <div class="section-head-wrap text-center fade-up">
+        <h2 class="section-title">By the <span class="red">Numbers</span></h2>
+        <p class="section-sub mx-auto" style="margin-left:auto;margin-right:auto;">Sample data — illustrative metrics from our journey.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card fade-up d1">
+          <div class="stat-number">2,500+</div>
+          <div class="stat-label">Students Enrolled</div>
+        </div>
+        <div class="stat-card fade-up d2">
+          <div class="stat-number">96%</div>
+          <div class="stat-label">Success Rate</div>
+        </div>
+        <div class="stat-card fade-up d3">
+          <div class="stat-number">25+</div>
+          <div class="stat-label">Expert Faculty</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="section why-section" id="why">
+    <div class="container">
+      <div class="section-head-wrap text-center fade-up">
+        <h2 class="section-title">Why <span class="red">Newton?</span></h2>
+        <p class="section-sub mx-auto" style="margin-left:auto;margin-right:auto;">We turn every student into a champion. Here's how.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card fade-up d1">
+          <div class="why-medal">#1</div>
+          <div class="why-icon"><i data-lucide="award" size="28"></i></div>
+          <h3>Top Results</h3>
+          <p>Consistent board toppers and 96%+ success rate year after year.</p>
+        </div>
+        <div class="why-card fade-up d2">
+          <div class="why-medal">HOT</div>
+          <div class="why-icon"><i data-lucide="trending-up" size="28"></i></div>
+          <h3>Growth Focus</h3>
+          <p>Personalised learning paths that push every student to excel.</p>
+        </div>
+        <div class="why-card fade-up d3">
+          <div class="why-medal">FAST</div>
+          <div class="why-icon"><i data-lucide="zap" size="28"></i></div>
+          <h3>Power Sessions</h3>
+          <p>High-intensity concept sessions that make learning stick.</p>
+        </div>
+        <div class="why-card fade-up d4">
+          <div class="why-medal">♥</div>
+          <div class="why-icon"><i data-lucide="heart" size="28"></i></div>
+          <h3>We Care</h3>
+          <p>Every student gets mentorship, motivation, and unwavering support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section class="section courses-section" id="courses">
+    <div class="container">
+      <div class="section-head-wrap text-center fade-up">
+        <h2 class="section-title">Our <span class="red">Courses</span></h2>
+        <p class="section-sub mx-auto" style="margin-left:auto;margin-right:auto;">Comprehensive coaching from Class 9 to 12 across all streams.</p>
+      </div>
+      <div class="courses-grid">
+        <div class="course-card fade-up d1">
+          <h3>Class 9</h3>
+          <p>All subjects — Mathematics, Science, SST, English, Hindi. Full syllabus coverage.</p>
+          <span class="course-badge">CBSE &amp; HBSE</span>
+        </div>
+        <div class="course-card fade-up d2">
+          <h3>Class 10</h3>
+          <p>Board-focused preparation with mock tests, revision, and personalised doubt solving.</p>
+          <span class="course-badge">CBSE &amp; HBSE</span>
+        </div>
+        <div class="course-card fade-up d3">
+          <h3>Class 11 Science</h3>
+          <p>Physics, Chemistry, Maths, Biology — build a rock-solid foundation.</p>
+          <span class="course-badge">CBSE &amp; HBSE</span>
+        </div>
+        <div class="course-card fade-up d1">
+          <h3>Class 11 Commerce</h3>
+          <p>Accountancy, Economics, Business Studies, Maths — expert coaching.</p>
+          <span class="course-badge">CBSE &amp; HBSE</span>
+        </div>
+        <div class="course-card fade-up d2">
+          <h3>Class 12 Science</h3>
+          <p>Advanced concepts, board prep, and competitive exam readiness.</p>
+          <span class="course-badge">CBSE &amp; HBSE</span>
+        </div>
+        <div class="course-card fade-up d3">
+          <h3>Class 12 Commerce</h3>
+          <p>Complete commerce curriculum designed for top board performance.</p>
+          <span class="course-badge">CBSE &amp; HBSE</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACULTY -->
+  <section class="section faculty-section" id="faculty">
+    <div class="container">
+      <div class="section-head-wrap text-center fade-up">
+        <h2 class="section-title">Meet the <span class="red">Team</span></h2>
+        <p class="section-sub mx-auto" style="margin-left:auto;margin-right:auto;">World-class educators who inspire excellence.</p>
+      </div>
+      <div class="faculty-grid">
+        <div class="faculty-card fade-up d1">
+          <div class="faculty-avatar">Photo</div>
+          <h3>Mr. Newton Singh</h3>
+          <div class="role">Founder &amp; Physics</div>
+          <p>25+ years of teaching. M.Sc. Physics. Believer in making learning an obsession, not a chore.</p>
+        </div>
+        <div class="faculty-card fade-up d2">
+          <div class="faculty-avatar">Photo</div>
+          <h3>Ms. Priya Mehta</h3>
+          <div class="role">Mathematics</div>
+          <p>M.Sc. Mathematics, 14 years experience. Makes numbers fun and intuitive for every student.</p>
+        </div>
+        <div class="faculty-card fade-up d3">
+          <div class="faculty-avatar">Photo</div>
+          <h3>Mr. Arjun Kapoor</h3>
+          <div class="role">Chemistry &amp; Biology</div>
+          <p>PhD in Biochemistry. Brings lab-style practical understanding to every theory class.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section testimonials-section" id="testimonials">
+    <div class="container">
+      <div class="section-head-wrap text-center fade-up">
+        <h2 class="section-title">Student <span class="red">Voices</span></h2>
+        <p class="section-sub mx-auto" style="margin-left:auto;margin-right:auto;">Real stories from real students.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-up d1">
+          <div class="quote-icon"><i data-lucide="quote" size="24"></i></div>
+          <p class="quote">"Newton Classes didn't just teach me Physics — they made me fall in love with it. The energy in every class is electric."</p>
+          <div class="testimonial-author">
+            <div class="avatar"></div>
+            <div><div class="name">Rohan D.</div><div class="detail">Class 12, Science</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up d2">
+          <div class="quote-icon"><i data-lucide="quote" size="24"></i></div>
+          <p class="quote">"I went from failing Maths to scoring 92% in my boards. The faculty here never gave up on me. Forever grateful."</p>
+          <div class="testimonial-author">
+            <div class="avatar"></div>
+            <div><div class="name">Kavita S.</div><div class="detail">Class 10, Board Topper</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up d3">
+          <div class="quote-icon"><i data-lucide="quote" size="24"></i></div>
+          <p class="quote">"The competition here is healthy, the teaching world-class, and the results speak for themselves. Best decision I made."</p>
+          <div class="testimonial-author">
+            <div class="avatar"></div>
+            <div><div class="name">Vikram P.</div><div class="detail">Class 11, Commerce</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section gallery-section" id="gallery">
+    <div class="container">
+      <div class="section-head-wrap text-center fade-up">
+        <h2 class="section-title">Gallery <span class="red">Snapshots</span></h2>
+        <p class="section-sub mx-auto" style="margin-left:auto;margin-right:auto;">Moments from our coaching journey.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item fade-up d1">Image Placeholder</div>
+        <div class="gallery-item fade-up d2">Image Placeholder</div>
+        <div class="gallery-item fade-up d3">Image Placeholder</div>
+        <div class="gallery-item fade-up d4">Image Placeholder</div>
+        <div class="gallery-item fade-up d1">Image Placeholder</div>
+        <div class="gallery-item fade-up d2">Image Placeholder</div>
+        <div class="gallery-item fade-up d3">Image Placeholder</div>
+        <div class="gallery-item fade-up d4">Image Placeholder</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <div class="section-head-wrap text-center fade-up">
+        <h2 class="section-title">Get in <span class="red">Touch</span></h2>
+        <p class="section-sub mx-auto" style="margin-left:auto;margin-right:auto;">Ready to transform your learning journey?</p>
+      </div>
+      <div class="contact-wrap">
+        <form class="contact-form fade-up d1">
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+          <input type="tel" placeholder="Phone Number">
+          <textarea placeholder="Your Message..." rows="4"></textarea>
+          <button type="submit" class="btn btn-yellow"><i data-lucide="send" size="18"></i> Send Message</button>
+        </form>
+        <div class="contact-info fade-up d2">
+          <a href="tel:+919996898899" class="contact-item"><i data-lucide="phone" size="20"></i> +91 99968 98899</a>
+          <a href="https://www.instagram.com/newtonclasseskarnal" target="_blank" class="contact-item"><i data-lucide="instagram" size="20"></i> @newtonclasseskarnal</a>
+          <a href="https://maps.google.com/maps?cid=15265295076993273614" target="_blank" class="contact-item"><i data-lucide="map-pin" size="20"></i> Karnal, Haryana</a>
+          <div class="contact-map">
+            <iframe src="https://maps.google.com/maps?cid=15265295076993273614&output=embed" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand"><span>Newton</span> Classes</div>
+      <div class="footer-text">&copy; 2025 Newton Classes. All rights reserved.</div>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/newtonclasseskarnal" target="_blank" aria-label="Instagram"><i data-lucide="instagram" size="18"></i></a>
+        <a href="tel:+919996898899" aria-label="Phone"><i data-lucide="phone" size="18"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Navbar scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const overlay = document.getElementById('overlay');
+    function openNav() { mobileNav.classList.add('open'); overlay.classList.add('show'); hamburger.classList.add('active'); }
+    function closeNav() { mobileNav.classList.remove('open'); overlay.classList.remove('show'); hamburger.classList.remove('active'); }
+    hamburger.addEventListener('click', () => {
+      if (mobileNav.classList.contains('open')) closeNav(); else openNav();
+    });
+    overlay.addEventListener('click', closeNav);
+    window.closeNav = closeNav;
+
+    // Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Smooth anchor scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (id === '#') return;
+        e.preventDefault();
+        document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>

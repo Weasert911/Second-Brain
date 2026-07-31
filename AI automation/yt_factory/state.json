@@ -1,0 +1,32 @@
+{
+  "topic": {
+    "approved": false,
+    "current_version": 0,
+    "selected": null
+  },
+  "title": {
+    "approved": false,
+    "current_version": 0,
+    "selected": null
+  },
+  "hook": {
+    "approved": false,
+    "current_version": 0,
+    "selected": null
+  },
+  "script": {
+    "approved": false,
+    "current_version": 0,
+    "selected": null
+  },
+  "scenes": {
+    "approved": false,
+    "current_version": 0,
+    "selected": null
+  },
+  "thumbnail": {
+    "approved": false,
+    "current_version": 0,
+    "selected": null
+  }
+}

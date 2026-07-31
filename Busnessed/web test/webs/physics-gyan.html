@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics Gyan by Vinit Saluja | Master Physics. Conquer Exams. | Karnal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Raleway',sans-serif;background:#F0F4F8;color:#2C2C2C;line-height:1.7;overflow-x:hidden}
+::selection{background:#EAB308;color:#0A1628}
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:#0A1628}
+::-webkit-scrollbar-thumb{background:#EAB308;border-radius:4px}
+.container{max-width:1140px;margin:0 auto;padding:0 24px}
+.nav{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(240,244,248,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(234,179,8,0.2)}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;height:76px;max-width:1140px;margin:0 auto;padding:0 24px}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;color:#0A1628;text-decoration:none;letter-spacing:0.5px}
+.logo span{color:#EAB308}
+.nav-links{display:flex;list-style:none;gap:20px}
+.nav-links a{color:#555;text-decoration:none;font-size:0.82rem;font-weight:500;transition:color 0.3s;position:relative;padding:4px 0;text-transform:uppercase;letter-spacing:1px}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:0;height:1px;background:#EAB308;transition:width 0.3s}
+.nav-links a:hover{color:#0A1628}
+.nav-links a:hover::after{width:100%}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px;z-index:1001}
+.hamburger span{width:26px;height:2px;background:#0A1628;transition:all 0.3s ease;border-radius:1px;display:block}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:76px;background:linear-gradient(180deg,#0A1628 0%,#1a2a50 40%,#0A1628 100%)}
+.hero-inner{text-align:center;position:relative;z-index:2;max-width:800px;margin:0 auto}
+.ornament{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:24px;color:#EAB308;font-size:0.8rem}
+.ornament-line{width:60px;height:1px;background:linear-gradient(90deg,transparent,#EAB308)}
+.ornament-line:last-child{background:linear-gradient(90deg,#EAB308,transparent)}
+.ornament-symbol{font-size:1rem;opacity:0.7}
+.shield{width:80px;height:72px;margin:0 auto 28px;position:relative}
+.shield-inner{width:100%;height:100%;background:linear-gradient(135deg,#EAB308,#FACC15,#EAB308);clip-path:polygon(50% 0%,100% 22%,100% 65%,50% 100%,0% 65%,0% 22%);display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 4px 20px rgba(234,179,8,0.25)}
+.shield-inner::before{content:'';position:absolute;inset:4px;background:#0A1628;clip-path:polygon(50% 4%,96% 24%,96% 63%,50% 96%,4% 63%,4% 24%);z-index:0}
+.shield-inner i{position:relative;z-index:1;color:#EAB308}
+.shield-border{position:absolute;inset:-3px;background:linear-gradient(135deg,#EAB308,transparent 40%,#EAB308);clip-path:polygon(50% 0%,100% 22%,100% 65%,50% 100%,0% 65%,0% 22%);z-index:-1;opacity:0.4}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,5.5vw,4.2rem);font-weight:600;color:#F0F4F8;line-height:1.15;margin-bottom:12px}
+.hero h1 .highlight{color:#EAB308;font-style:italic}
+.hero-tagline{font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,2vw,1.4rem);color:#EAB308;font-style:italic;margin-bottom:8px}
+.hero p{font-size:1rem;color:rgba(240,244,248,0.7);margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.7}
+.hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 34px;font-family:'Raleway',sans-serif;font-weight:600;font-size:0.85rem;cursor:pointer;text-decoration:none;transition:all 0.3s;border:none;text-transform:uppercase;letter-spacing:1px}
+.btn-primary{background:#EAB308;color:#0A1628}
+.btn-primary:hover{background:#CA8A04;transform:translateY(-2px);box-shadow:0 4px 20px rgba(234,179,8,0.3)}
+.btn-outline{background:transparent;color:#EAB308;border:1px solid #EAB308}
+.btn-outline:hover{background:rgba(234,179,8,0.1);border-color:#CA8A04}
+.section{padding:100px 0;position:relative}
+.section-navy{background:#0A1628;color:#F0F4F8}
+.section-navy .section-subtitle{color:rgba(240,244,248,0.6)}
+.section-cream{background:#F0F4F8}
+.section-white{background:#fff}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.8vw,3rem);font-weight:600;margin-bottom:8px;text-align:center}
+.section-title .gold{color:#EAB308}
+.section-subtitle{color:#888;text-align:center;font-size:0.92rem;margin-bottom:50px;max-width:540px;margin-left:auto;margin-right:auto;font-weight:400}
+.section-navy .section-title{color:#F0F4F8}
+.section-navy .section-subtitle{color:rgba(240,244,248,0.6)}
+.divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 auto 50px;color:#EAB308;opacity:0.6}
+.divider-line{width:50px;height:1px;background:#EAB308}
+.divider-diamond{width:6px;height:6px;background:#EAB308;transform:rotate(45deg)}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.stat-card{background:#fff;border:1px solid rgba(234,179,8,0.3);padding:40px 24px 32px;text-align:center;transition:all 0.3s}
+.stat-card:hover{border-color:#EAB308;box-shadow:0 4px 24px rgba(234,179,8,0.08)}
+.stat-number{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:600;color:#EAB308}
+.stat-label{font-size:0.9rem;color:#888;margin-top:6px;font-weight:400}
+.stat-note{font-size:0.7rem;color:#bbb;margin-top:3px;font-style:italic}
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.why-card{background:rgba(255,255,255,0.04);border:1px solid rgba(234,179,8,0.2);padding:36px 28px;transition:all 0.35s;position:relative}
+.why-card:hover{border-color:#EAB308;background:rgba(234,179,8,0.04);transform:translateY(-4px)}
+.why-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#EAB308,transparent);opacity:0;transition:opacity 0.3s}
+.why-card:hover::before{opacity:1}
+.why-icon{color:#EAB308;margin-bottom:16px}
+.why-card h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;margin-bottom:8px}
+.why-card p{color:#aaa;font-size:0.88rem;line-height:1.65}
+.courses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px}
+.course-card{background:#fff;border:1px solid rgba(234,179,8,0.2);padding:36px 28px;text-align:center;transition:all 0.35s;position:relative;overflow:hidden}
+.course-card::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:2px;background:linear-gradient(90deg,transparent,#EAB308,transparent);opacity:0;transition:opacity 0.3s}
+.course-card:hover::after{opacity:1}
+.course-card:hover{border-color:#EAB308;box-shadow:0 4px 24px rgba(234,179,8,0.08);transform:translateY(-4px)}
+.course-card .course-icon{color:#EAB308;margin-bottom:14px}
+.course-card h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;margin-bottom:6px}
+.course-card p{color:#888;font-size:0.85rem;line-height:1.6}
+.featured-faculty{background:rgba(234,179,8,0.04);border:2px solid rgba(234,179,8,0.25);padding:40px;text-align:center;max-width:500px;margin:0 auto 40px;position:relative}
+.featured-faculty::before{content:'';position:absolute;top:-1px;left:-1px;right:-1px;bottom:-1px;border:1px solid rgba(234,179,8,0.15);pointer-events:none}
+.featured-img{width:120px;height:120px;margin:0 auto 18px;background:linear-gradient(135deg,#0A1628,#1a2a50);border:2px solid #EAB308;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:#EAB308;border-radius:50%}
+.featured-faculty h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:#0A1628}
+.featured-faculty .role{color:#EAB308;font-size:0.9rem;font-weight:500;margin-top:4px;letter-spacing:1px;text-transform:uppercase}
+.featured-faculty p{color:#888;font-size:0.88rem;margin-top:10px;max-width:400px;margin-left:auto;margin-right:auto}
+.faculty-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px}
+.faculty-card{text-align:center;padding:28px 16px;border:1px solid rgba(234,179,8,0.12);background:rgba(255,255,255,0.03);transition:all 0.3s}
+.faculty-card:hover{border-color:rgba(234,179,8,0.3)}
+.faculty-card .faculty-img{width:80px;height:80px;margin:0 auto 14px;background:linear-gradient(135deg,#0A1628,#152240);border:1px solid rgba(234,179,8,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:#EAB308}
+.faculty-card h4{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600}
+.faculty-card p{color:#999;font-size:0.78rem;margin-top:3px}
+.testimonial-carousel{position:relative;overflow:hidden;max-width:750px;margin:0 auto}
+.testimonial-track{display:flex;transition:transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)}
+.testimonial-card{min-width:100%;padding:44px 44px;background:#fff;border:1px solid rgba(234,179,8,0.2);text-align:center}
+.testimonial-card .quote-icon{color:#EAB308;margin-bottom:14px;opacity:0.35}
+.testimonial-card p{color:#666;font-size:0.95rem;margin-bottom:16px;line-height:1.8;font-style:italic}
+.testimonial-author{font-family:'Cormorant Garamond',serif;font-weight:600;color:#0A1628;font-size:1rem}
+.testimonial-role{font-size:0.8rem;color:#aaa;margin-top:2px}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.3);color:#0A1628;width:44px;height:44px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;z-index:10}
+.carousel-btn:hover{background:rgba(234,179,8,0.2)}
+.carousel-prev{left:-4px}
+.carousel-next{right:-4px}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.gallery-item{aspect-ratio:4/3;background:linear-gradient(135deg,#F0F4F8,#E8DDD0);border:1px solid rgba(234,179,8,0.2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:all 0.3s}
+.gallery-item:hover{border-color:#EAB308}
+.gallery-item::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 35%,rgba(234,179,8,0.06) 100%)}
+.gallery-item span{color:#998;font-size:0.8rem;z-index:1}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.contact-info h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;margin-bottom:22px;color:#0A1628}
+.contact-item{display:flex;align-items:center;gap:12px;margin-bottom:14px;color:#888}
+.contact-item a{color:#555;text-decoration:none;transition:color 0.3s}
+.contact-item a:hover{color:#EAB308}
+.contact-item svg{color:#EAB308;flex-shrink:0}
+.contact-form{display:flex;flex-direction:column;gap:16px}
+.contact-form input,.contact-form textarea{padding:13px 16px;background:#fff;border:1px solid rgba(234,179,8,0.25);color:#2C2C2C;font-family:'Raleway',sans-serif;font-size:0.88rem;transition:all 0.3s}
+.contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:#EAB308;box-shadow:0 0 0 2px rgba(234,179,8,0.1)}
+.contact-form textarea{min-height:120px;resize:vertical}
+.contact-form .btn{align-self:flex-start}
+.contact-map{margin-top:20px}
+.contact-map iframe{width:100%;height:240px;border:1px solid rgba(234,179,8,0.2);filter:sepia(0.15) brightness(0.95)}
+.footer{background:#0A1628;padding:48px 0;text-align:center}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:#EAB308;margin-bottom:6px}
+.footer-brand-sub{font-size:0.8rem;color:#776;margin-bottom:18px}
+.footer-social{display:flex;justify-content:center;gap:14px;margin-bottom:18px}
+.footer-social a{color:#998;transition:all 0.3s;padding:10px;border:1px solid rgba(234,179,8,0.12);display:flex;align-items:center;justify-content:center}
+.footer-social a:hover{color:#EAB308;border-color:rgba(234,179,8,0.3)}
+.footer p{color:#665;font-size:0.8rem}
+.footer .footer-note{color:#554;font-size:0.72rem;margin-top:4px}
+.footer-divider{width:40px;height:1px;background:rgba(234,179,8,0.2);margin:16px auto}
+.section-navy .contact-info h3{color:#F0F4F8}
+.section-navy .contact-item{color:#998}
+.section-navy .contact-item a{color:#ccc}
+.section-navy .contact-item a:hover{color:#EAB308}
+.fade-in{opacity:0;transform:translateY(28px);transition:opacity 0.55s cubic-bezier(0.25,0.46,0.45,0.94),transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94)}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+@media(max-width:968px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){
+.nav-links{position:fixed;top:76px;left:0;width:100%;background:rgba(240,244,248,0.98);flex-direction:column;gap:0;padding:16px 24px;display:none;border-bottom:1px solid rgba(234,179,8,0.15)}
+.nav-links.open{display:flex}
+.nav-links a{padding:14px 0;border-bottom:1px solid rgba(234,179,8,0.06);font-size:0.85rem}
+.hamburger{display:flex}
+.stats-grid{grid-template-columns:1fr}
+.why-grid{grid-template-columns:1fr}
+.contact-grid{grid-template-columns:1fr}
+.hero h1{font-size:2.2rem}
+.section{padding:70px 0}
+.featured-faculty{padding:28px 20px}
+}
+@media(max-width:480px){
+.hero-buttons{flex-direction:column;align-items:center}
+.hero-buttons .btn{width:100%;justify-content:center}
+.gallery-grid{grid-template-columns:1fr}
+.carousel-btn{width:36px;height:36px}
+.carousel-prev{left:2px}
+.carousel-next{right:2px}
+.section{padding:50px 0}
+}
+</style>
+</head>
+<body><nav class="nav">
+<div class="nav-inner">
+<a href="#" class="logo"><img src="physics-gyan.png" alt="Physics Gyan" style="height:32px;width:auto;margin-right:8px;border-radius:6px;vertical-align:middle">Physics Gyan <span>| Vinit Saluja</span></a>
+<button class="hamburger" id="hamburger" aria-label="Menu">
+<span></span><span></span><span></span>
+</button>
+<ul class="nav-links" id="navLinks">
+<li><a href="#hero">Home</a></li>
+<li><a href="#stats">Stats</a></li>
+<li><a href="#why">Why Us</a></li>
+<li><a href="#courses">Courses</a></li>
+<li><a href="#faculty">Faculty</a></li>
+<li><a href="#testimonials">Testimonials</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</div>
+</nav>
+
+<section class="hero" id="hero">
+<div class="container hero-inner">
+<div class="ornament">
+<span class="ornament-line"></span>
+<span class="ornament-symbol">&#9672;</span>
+<span class="ornament-line"></span>
+</div>
+<div class="shield" style="width:100px;height:auto;">
+<div class="shield-border"></div>
+<div class="shield-inner" style="clip-path:none;border-radius:12px;">
+<img src="physics-gyan.png" alt="Physics Gyan Logo" style="width:80px;height:80px;object-fit:contain;border-radius:8px;">
+</div>
+</div>
+<h1>Physics Gyan<br><span class="highlight">by Vinit Saluja</span></h1>
+<div class="hero-tagline">Master Physics. Conquer Exams.</div>
+<p>Specialised Physics coaching for Classes 11 &amp; 12 (PCM) in Karnal. CBSE &amp; Haryana Board � conceptual clarity meets exam excellence.</p>
+<div class="hero-buttons">
+<a href="#contact" class="btn btn-primary"><i data-lucide="arrow-up-right" size="16"></i> Enquire Now</a>
+<a href="#courses" class="btn btn-outline"><i data-lucide="book-open" size="16"></i> View Courses</a>
+</div>
+</div>
+</section>
+
+<section class="section section-white" id="stats">
+<div class="container">
+<h2 class="section-title">By the <span class="gold">Numbers</span></h2>
+<div class="divider">
+<span class="divider-line"></span>
+<span class="divider-diamond"></span>
+<span class="divider-line"></span>
+</div>
+<p class="section-subtitle">Our track record in Physics education (illustrative data)</p>
+<div class="stats-grid">
+<div class="stat-card fade-in">
+<div class="stat-number">300+</div>
+<div class="stat-label">Students Taught</div>
+<div class="stat-note">* sample data</div>
+</div>
+<div class="stat-card fade-in">
+<div class="stat-number">96%</div>
+<div class="stat-label">Physics Pass Rate</div>
+<div class="stat-note">* sample data</div>
+</div>
+<div class="stat-card fade-in">
+<div class="stat-number">8+</div>
+<div class="stat-label">Years of Excellence</div>
+<div class="stat-note">* sample data</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section section-navy" id="why">
+<div class="container">
+<h2 class="section-title">Why Study with <span class="gold">Us</span></h2>
+<div class="divider">
+<span class="divider-line"></span>
+<span class="divider-diamond"></span>
+<span class="divider-line"></span>
+</div>
+<p class="section-subtitle">What makes Physics Gyan the premier Physics coaching destination in Karnal</p>
+<div class="why-grid">
+<div class="why-card fade-in">
+<div class="why-icon"><i data-lucide="atom" size="28"></i></div>
+<h3>Conceptual Physics</h3>
+<p>Deep focus on core concepts and fundamentals rather than rote learning. Build intuition for every formula and law.</p>
+</div>
+<div class="why-card fade-in">
+<div class="why-icon"><i data-lucide="award" size="28"></i></div>
+<h3>Proven Results</h3>
+<p>Consistent track record of top scores in board exams and competitive entrance tests like JEE &amp; NEET.</p>
+</div>
+<div class="why-card fade-in">
+<div class="why-icon"><i data-lucide="book-open" size="28"></i></div>
+<h3>Structured Curriculum</h3>
+<p>Well-planned syllabus coverage with regular tests, assignments, and revision sessions for Classes 11 &amp; 12.</p>
+</div>
+<div class="why-card fade-in">
+<div class="why-icon"><i data-lucide="trending-up" size="28"></i></div>
+<h3>Exam Strategy</h3>
+<p>Smart problem-solving techniques, time management skills, and exam-ready preparation for CBSE &amp; Haryana Board.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section section-white" id="courses">
+<div class="container">
+<h2 class="section-title">Courses <span class="gold">Offered</span></h2>
+<div class="divider">
+<span class="divider-line"></span>
+<span class="divider-diamond"></span>
+<span class="divider-line"></span>
+</div>
+<p class="section-subtitle">Specialised Physics programmes for Classes 11 &amp; 12 (PCM stream)</p>
+<div class="courses-grid">
+<div class="course-card fade-in">
+<div class="course-icon"><i data-lucide="atom" size="28"></i></div>
+<h3>Class 11 � Physics</h3>
+<p>Complete CBSE &amp; Haryana Board Physics syllabus with conceptual foundation and numerical practice.</p>
+</div>
+<div class="course-card fade-in">
+<div class="course-icon"><i data-lucide="atom" size="28"></i></div>
+<h3>Class 12 � Physics</h3>
+<p>Board-focused coaching with comprehensive coverage, previous year papers, and mock tests.</p>
+</div>
+<div class="course-card fade-in">
+<div class="course-icon"><i data-lucide="graduation-cap" size="28"></i></div>
+<h3>PCM Combo � 11 &amp; 12</h3>
+<p>Integrated Physics coaching with supplementary support for Chemistry &amp; Mathematics conceptual clarity.</p>
+</div>
+<div class="course-card fade-in">
+<div class="course-icon"><i data-lucide="zap" size="28"></i></div>
+<h3>JEE / NEET Physics</h3>
+<p>Advanced problem-solving sessions for competitive exam aspirants alongside board preparation.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section section-navy" id="faculty">
+<div class="container">
+<h2 class="section-title">Our <span class="gold">Faculty</span></h2>
+<div class="divider">
+<span class="divider-line"></span>
+<span class="divider-diamond"></span>
+<span class="divider-line"></span>
+</div>
+<p class="section-subtitle">Led by experienced Physics educators dedicated to your success</p>
+<div class="featured-faculty fade-in">
+<div class="featured-img"><span>Director</span></div>
+<h3>Vinit Saluja</h3>
+<div class="role">Founder &amp; Lead Physics Faculty</div>
+<p>With over 8 years of teaching experience in Karnal, Vinit Saluja has helped hundreds of students master Physics and achieve top scores in CBSE, Haryana Board &amp; competitive exams. His conceptual teaching approach makes even the toughest topics accessible.</p>
+</div>
+<div class="faculty-grid">
+<div class="faculty-card fade-in">
+<div class="faculty-img"><span>Faculty</span></div>
+<h4>Dr. N. Bhardwaj</h4>
+<p>Chemistry � Ph.D, 10+ yrs</p>
+</div>
+<div class="faculty-card fade-in">
+<div class="faculty-img"><span>Faculty</span></div>
+<h4>Mr. A. Kapoor</h4>
+<p>Mathematics � M.Sc, 8+ yrs</p>
+</div>
+<div class="faculty-card fade-in">
+<div class="faculty-img"><span>Faculty</span></div>
+<h4>Ms. R. Gupta</h4>
+<p>Physics � M.Sc, 6+ yrs</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section section-cream" id="testimonials">
+<div class="container">
+<h2 class="section-title">Student <span class="gold">Testimonials</span></h2>
+<div class="divider">
+<span class="divider-line"></span>
+<span class="divider-diamond"></span>
+<span class="divider-line"></span>
+</div>
+<p class="section-subtitle">What our students say about the Physics Gyan experience</p>
+<div class="testimonial-carousel" id="testimonialCarousel">
+<div class="testimonial-track" id="testimonialTrack">
+<div class="testimonial-card">
+<div class="quote-icon"><i data-lucide="quote" size="32"></i></div>
+<p>"Vinit Sir has a gift for explaining Physics. What used to be my weakest subject became my strongest. His conceptual approach changed everything for me."</p>
+<div class="testimonial-author">�� Ananya Gupta</div>
+<div class="testimonial-role">Class 12, PCM (2024)</div>
+</div>
+<div class="testimonial-card">
+<div class="quote-icon"><i data-lucide="quote" size="32"></i></div>
+<p>"The structured curriculum and regular mock tests at Physics Gyan gave me the confidence to ace my board exams. I scored 95 in Physics!"</p>
+<div class="testimonial-author">�� Karan Singh</div>
+<div class="testimonial-role">Class 12, PCM Topper</div>
+</div>
+<div class="testimonial-card">
+<div class="quote-icon"><i data-lucide="quote" size="32"></i></div>
+<p>"I joined Physics Gyan for JEE preparation and the advanced problem-solving sessions were incredibly helpful. The personalised attention is unmatched in Karnal."</p>
+<div class="testimonial-author">�� Sneha Malhotra</div>
+<div class="testimonial-role">JEE Aspirant, Class 12</div>
+</div>
+</div>
+<button class="carousel-btn carousel-prev" id="prevBtn"><i data-lucide="chevron-left" size="22"></i></button>
+<button class="carousel-btn carousel-next" id="nextBtn"><i data-lucide="chevron-right" size="22"></i></button>
+</div>
+</div>
+</section>
+
+<section class="section section-white" id="gallery">
+<div class="container">
+<h2 class="section-title">Our <span class="gold">Gallery</span></h2>
+<div class="divider">
+<span class="divider-line"></span>
+<span class="divider-diamond"></span>
+<span class="divider-line"></span>
+</div>
+<p class="section-subtitle">A peek into the Physics Gyan learning environment</p>
+<div class="gallery-grid">
+<div class="gallery-item fade-in"><span>Image Placeholder</span></div>
+<div class="gallery-item fade-in"><span>Image Placeholder</span></div>
+<div class="gallery-item fade-in"><span>Image Placeholder</span></div>
+<div class="gallery-item fade-in"><span>Image Placeholder</span></div>
+</div>
+</div>
+</section>
+
+<section class="section section-navy" id="contact">
+<div class="container">
+<h2 class="section-title">Get In <span class="gold">Touch</span></h2>
+<div class="divider">
+<span class="divider-line"></span>
+<span class="divider-diamond"></span>
+<span class="divider-line"></span>
+</div>
+<p class="section-subtitle">Start your Physics mastery journey at Physics Gyan in Karnal</p>
+<div class="contact-grid">
+<div class="contact-info fade-in">
+<h3>Contact Information</h3>
+<div class="contact-item">
+<i data-lucide="phone" size="20"></i>
+<a href="tel:+918930908558">+91 89309 08558</a>
+</div>
+<div class="contact-item">
+<i data-lucide="map-pin" size="20"></i>
+<span>Karnal, Haryana</span>
+</div>
+<div class="contact-item">
+<i data-lucide="instagram" size="20"></i>
+<a href="https://www.instagram.com/physicsgyan" target="_blank" rel="noopener">@physicsgyan</a>
+</div>
+<div class="contact-item">
+<i data-lucide="mail" size="20"></i>
+<a href="mailto:info@physicsgyan.in">info@physicsgyan.in</a>
+</div>
+<div class="contact-map">
+<iframe src="https://maps.google.com/maps?cid=11875572299484025640&amp;output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+</div>
+<form class="contact-form fade-in" onsubmit="event.preventDefault();alert('Thank you for your enquiry! We will get back to you shortly.');">
+<input type="text" placeholder="Your Name" required>
+<input type="email" placeholder="Your Email" required>
+<input type="tel" placeholder="Phone Number">
+<textarea placeholder="Your Message" required></textarea>
+<button type="submit" class="btn btn-primary"><i data-lucide="arrow-up-right" size="16"></i> Send Enquiry</button>
+</form>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="container">
+<div class="footer-brand">Physics Gyan</div>
+<div class="footer-brand-sub">by Vinit Saluja</div>
+<div class="footer-divider"></div>
+<div class="footer-social">
+<a href="https://www.instagram.com/physicsgyan" target="_blank" rel="noopener" aria-label="Instagram"><i data-lucide="instagram" size="20"></i></a>
+<a href="https://maps.google.com/?cid=11875572299484025640" target="_blank" rel="noopener" aria-label="Maps"><i data-lucide="map-pin" size="20"></i></a>
+</div>
+<p>&copy; 2026 Physics Gyan by Vinit Saluja, Karnal. All rights reserved.</p>
+<p class="footer-note">Master Physics. Conquer Exams.</p>
+</div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+if(typeof lucide!=='undefined'){lucide.createIcons()}
+var h=document.getElementById('hamburger'),n=document.getElementById('navLinks');
+if(h&&n){h.addEventListener('click',function(){h.classList.toggle('active');n.classList.toggle('open')});
+n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){h.classList.remove('active');n.classList.remove('open')})})}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.classList.add('visible')}})},{threshold:0.12});
+document.querySelectorAll('.fade-in').forEach(function(el){io.observe(el)});
+var tr=document.getElementById('testimonialTrack'),pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+if(tr&&pb&&nb){var ci=0,cd=tr.querySelectorAll('.testimonial-card'),tc=cd.length;
+var up=function(){tr.style.transform='translateX(-'+(ci*100)+'%)'};
+nb.addEventListener('click',function(){ci=(ci+1)%tc;up()});
+pb.addEventListener('click',function(){ci=(ci-1+tc)%tc;up()});
+setInterval(function(){ci=(ci+1)%tc;up()},5000)}
+});
+</script>
+</body>
+</html>

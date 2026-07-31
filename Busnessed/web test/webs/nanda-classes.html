@@ -1,0 +1,514 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nanda Classes – Master Every Subject. Excel Every Exam.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Open Sans',sans-serif;background:#fff;color:#1A1A2E;overflow-x:hidden}
+h1,h2,h3,h4,h5,h6{font-family:'Montserrat',sans-serif;font-weight:800}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 20px}
+.section{padding:80px 0}
+.section-title{font-size:2rem;text-align:center;margin-bottom:12px;text-transform:uppercase;letter-spacing:-1px}
+.section-title span{color:#3B82F6}
+.section-sub{text-align:center;color:#666;margin-bottom:48px;font-size:1.05rem}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;border-radius:0;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.95rem;text-transform:uppercase;letter-spacing:.5px;border:none;cursor:pointer;transition:all .3s ease;position:relative;overflow:hidden}
+.btn-primary{background:#1E3A8A;color:#fff}
+.btn-primary:hover{background:#1E40AF;transform:translateY(-3px);box-shadow:0 10px 30px rgba(30,58,138,.35)}
+.btn-outline{background:transparent;color:#fff;border:2px solid #fff}
+.btn-outline:hover{background:#fff;color:#1A1A2E;transform:translateY(-3px)}
+.btn-dark{background:#1A1A2E;color:#fff}
+.btn-dark:hover{background:#1E40AF;transform:translateY(-3px);box-shadow:0 10px 30px rgba(26,26,46,.3)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* fade-in-up animation */
+.fade-in-up{opacity:0;transform:translateY(40px);transition:opacity .6s ease,transform .6s ease}
+.fade-in-up.visible{opacity:1;transform:translateY(0)}
+/* Nav */
+.nav{position:fixed;top:0;left:0;width:100%;z-index:1000;background:#1A1A2E;padding:0 20px;transition:all .3s ease}
+.nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.3)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px;max-width:1200px;margin:0 auto}
+.nav-logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.5rem;color:#fff;letter-spacing:-1px}
+.nav-logo span{color:#1E3A8A}
+.nav-links{display:flex;list-style:none;gap:28px}
+.nav-links a{color:rgba(255,255,255,.8);font-size:.88rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:#3B82F6;transition:width .3s}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-links a:hover{color:#3B82F6}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{width:28px;height:3px;background:#fff;transition:all .3s;border-radius:2px}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,6px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-6px)}
+/* Mobile nav */
+.mobile-nav{position:fixed;top:0;right:-100%;width:300px;height:100vh;background:#1A1A2E;z-index:999;padding:100px 20px 40px;transition:right .4s ease;overflow-y:auto}
+.mobile-nav.open{right:0}
+.mobile-nav a{display:block;color:rgba(255,255,255,.85);font-family:'Montserrat',sans-serif;font-weight:700;font-size:1.1rem;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08);text-transform:uppercase;letter-spacing:.5px}
+.mobile-nav a:hover{color:#3B82F6}
+.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:998;opacity:0;pointer-events:none;transition:opacity .4s}
+.overlay.show{opacity:1;pointer-events:all}
+/* Hero */
+.hero{position:relative;padding:140px 0 80px;background:#1A1A2E;overflow:hidden;min-height:100vh;display:flex;align-items:center}
+.hero::before{content:'';position:absolute;top:-50%;right:-30%;width:80%;height:200%;background:#1E3A8A;transform:rotate(-15deg);opacity:.08}
+.hero::after{content:'';position:absolute;bottom:-10%;left:-10%;width:60%;height:60%;border:4px solid rgba(30,58,138,.15);border-radius:50%}
+.hero .container{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-badge{display:inline-block;padding:6px 20px;background:rgba(59,130,246,.15);color:#3B82F6;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:20px;border-radius:0}
+.hero-title{font-size:3.5rem;font-weight:900;color:#fff;line-height:1.1;margin-bottom:16px;letter-spacing:-2px}
+.hero-title span{color:#3B82F6}
+.hero-tagline{font-size:1.15rem;color:rgba(255,255,255,.7);margin-bottom:32px;line-height:1.7;max-width:500px}
+.hero-buttons{display:flex;flex-wrap:wrap;gap:16px}
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
+.hero-shape{width:380px;height:380px;background:linear-gradient(135deg,#1E3A8A,#1E40AF);clip-path:polygon(25% 0,100% 0,100% 100%,0 100%,0 50%);display:flex;align-items:center;justify-content:center;position:relative}
+.hero-shape-inner{width:200px;height:200px;border:4px solid rgba(255,255,255,.3);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.hero-shape-inner i{color:#fff}
+/* Stats */
+.stats{background:#1E3A8A;padding:60px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;text-align:center}
+.stat-item h3{font-size:2.8rem;font-weight:900;color:#fff;font-family:'Montserrat',sans-serif}
+.stat-item p{color:rgba(255,255,255,.85);font-weight:600;font-size:.95rem;margin-top:4px}
+.stat-note{text-align:center;color:rgba(255,255,255,.7);font-size:.8rem;margin-top:16px;font-style:italic}
+/* Why Us */
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.why-card{background:#fff;padding:36px 24px;text-align:center;border-top:4px solid #3B82F6;box-shadow:0 5px 30px rgba(0,0,0,.06);transition:all .4s ease;position:relative}
+.why-card:hover{transform:translateY(-10px);box-shadow:0 15px 50px rgba(0,0,0,.12)}
+.why-card .icon-wrap{width:64px;height:64px;background:#1A1A2E;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;transition:all .4s}
+.why-card:hover .icon-wrap{background:#3B82F6;transform:rotate(10deg) scale(1.05)}
+.why-card .icon-wrap i{color:#fff}
+.why-card h3{font-size:1.15rem;margin-bottom:8px}
+.why-card p{color:#666;font-size:.9rem;line-height:1.6}
+/* Courses */
+#courses{background:#f8f9fa}
+.courses-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.course-card{background:#fff;padding:32px 20px;text-align:center;box-shadow:0 5px 25px rgba(0,0,0,.05);transition:all .4s;position:relative}
+.course-card:hover{transform:scale(1.03);box-shadow:0 10px 40px rgba(0,0,0,.1)}
+.course-card .icon-wrap{width:72px;height:72px;border:3px solid #3B82F6;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;border-radius:0;transition:all .4s}
+.course-card:hover .icon-wrap{background:#3B82F6}
+.course-card:hover .icon-wrap i{color:#fff}
+.course-card .icon-wrap i{color:#3B82F6;transition:color .3s}
+.course-card h3{font-size:1.3rem;margin-bottom:4px}
+.course-card .board{color:#3B82F6;font-weight:600;font-size:.85rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
+.course-card p{color:#666;font-size:.88rem;line-height:1.6}
+.course-card .subjects{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px}
+.course-card .subjects span{background:#f0f0f0;padding:4px 12px;font-size:.75rem;font-weight:600;color:#555}
+/* Faculty */
+.faculty-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.faculty-card{background:#fff;text-align:center;padding:36px 20px;box-shadow:0 5px 25px rgba(0,0,0,.06);transition:all .4s;border-bottom:4px solid transparent}
+.faculty-card:hover{border-bottom-color:#3B82F6;transform:translateY(-8px);box-shadow:0 15px 40px rgba(0,0,0,.1)}
+.faculty-card .avatar{width:120px;height:120px;margin:0 auto 16px;background:linear-gradient(135deg,#1E3A8A,#3B82F6);display:flex;align-items:center;justify-content:center;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.faculty-card .avatar i{color:#fff}
+.faculty-card h3{font-size:1.15rem;margin-bottom:2px}
+.faculty-card .role{color:#3B82F6;font-weight:600;font-size:.85rem;margin-bottom:8px}
+.faculty-card p{color:#666;font-size:.88rem;line-height:1.6}
+/* Testimonials */
+.testimonial-carousel{max-width:700px;margin:0 auto;position:relative;overflow:hidden}
+.testimonial-slides{display:flex;transition:transform .5s ease}
+.testimonial-slide{min-width:100%;padding:0 10px}
+.testimonial-card{background:#fff;padding:40px 32px;box-shadow:0 5px 30px rgba(0,0,0,.06);text-align:center;border-left:4px solid #3B82F6}
+.testimonial-card .quote{font-size:3rem;color:#3B82F6;font-family:'Montserrat',sans-serif;line-height:1;margin-bottom:-10px}
+.testimonial-card p{color:#555;line-height:1.8;font-size:.95rem;margin-bottom:16px;font-style:italic}
+.testimonial-card .name{font-weight:700;color:#1A1A2E;font-family:'Montserrat',sans-serif}
+.testimonial-card .detail{font-size:.82rem;color:#999}
+.carousel-dots{display:flex;justify-content:center;gap:10px;margin-top:24px}
+.carousel-dots button{width:12px;height:12px;border-radius:0;background:#ddd;border:none;cursor:pointer;transition:all .3s}
+.carousel-dots button.active{background:#3B82F6;transform:scale(1.2)}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:#1A1A2E;color:#fff;border:none;width:44px;height:44px;cursor:pointer;transition:all .3s;z-index:5;display:flex;align-items:center;justify-content:center}
+.carousel-btn:hover{background:#3B82F6}
+.carousel-btn.prev{left:-50px}
+.carousel-btn.next{right:-50px}
+/* Gallery */
+#gallery{background:#f8f9fa}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.gallery-card{aspect-ratio:4/3;background:linear-gradient(135deg,#1E3A8A,#3B82F6);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.9rem;transition:all .4s;position:relative;overflow:hidden}
+.gallery-card::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.2);opacity:0;transition:opacity .4s}
+.gallery-card:hover::after{opacity:1}
+.gallery-card:hover{transform:scale(1.03)}
+.gallery-card i{position:relative;z-index:1}
+.gallery-card span{position:relative;z-index:1}
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.contact-info h3{font-size:1.3rem;margin-bottom:20px}
+.contact-info .info-item{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.contact-info .info-item i{width:44px;height:44px;background:#1A1A2E;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-info .info-item .label{font-weight:600;font-size:.88rem;color:#888}
+.contact-info .info-item .value{font-size:.95rem;color:#1A1A2E}
+.contact-info .info-item .value a{color:#3B82F6;font-weight:600}
+.contact-buttons{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.contact-form{background:#fff;padding:36px;box-shadow:0 5px 30px rgba(0,0,0,.06)}
+.contact-form h3{font-size:1.3rem;margin-bottom:20px}
+.form-group{margin-bottom:16px}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:14px 16px;border:2px solid #eee;font-family:'Open Sans',sans-serif;font-size:.95rem;transition:border .3s;background:#fafafa;border-radius:0}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:#3B82F6;background:#fff}
+.form-group textarea{height:100px;resize:vertical}
+.map-wrap{margin-top:32px;border:4px solid #1E3A8A}
+.map-wrap iframe{width:100%;height:350px;border:none;display:block}
+/* Footer */
+footer{background:#1A1A2E;color:rgba(255,255,255,.7);padding:60px 0 30px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-about h3{color:#fff;font-size:1.2rem;margin-bottom:12px;font-family:'Montserrat',sans-serif}
+.footer-about h3 span{color:#3B82F6}
+.footer-about p{font-size:.88rem;line-height:1.7}
+.footer-links h4{color:#fff;font-size:.95rem;margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px}
+.footer-links ul{list-style:none}
+.footer-links li{margin-bottom:8px}
+.footer-links a{color:rgba(255,255,255,.6);font-size:.85rem;transition:color .3s}
+.footer-links a:hover{color:#3B82F6}
+.footer-social{display:flex;gap:12px;margin-top:12px}
+.footer-social a{width:40px;height:40px;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;transition:all .3s}
+.footer-social a:hover{background:#3B82F6;border-color:#3B82F6}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;text-align:center;font-size:.82rem}
+.footer-bottom a{color:#3B82F6}
+@media(max-width:992px){
+.hero .container{grid-template-columns:1fr;text-align:center;gap:40px}
+.hero-title{font-size:2.6rem}
+.hero-tagline{margin:0 auto 32px}
+.hero-buttons{justify-content:center}
+.hero-visual{display:none}
+.why-grid{grid-template-columns:repeat(2,1fr)}
+.courses-grid{grid-template-columns:repeat(2,1fr)}
+.gallery-grid{grid-template-columns:repeat(2,1fr)}
+.footer-grid{grid-template-columns:1fr 1fr}
+.contact-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+.nav-links{display:none}
+.hamburger{display:flex}
+.section{padding:60px 0}
+.section-title{font-size:1.6rem}
+.hero{padding:120px 0 60px}
+.hero-title{font-size:2rem}
+.stats-grid{grid-template-columns:repeat(3,1fr);gap:16px}
+.stat-item h3{font-size:2rem}
+.why-grid{grid-template-columns:1fr 1fr;gap:16px}
+.courses-grid{grid-template-columns:1fr 1fr;gap:16px}
+.faculty-grid{grid-template-columns:1fr}
+.gallery-grid{grid-template-columns:1fr 1fr;gap:12px}
+.footer-grid{grid-template-columns:1fr}
+.carousel-btn{display:none}
+.contact-form{padding:24px}
+}
+@media(max-width:480px){
+.hero-title{font-size:1.7rem}
+.hero-buttons{flex-direction:column;align-items:center}
+.hero-buttons .btn{width:100%;justify-content:center}
+.stats-grid{grid-template-columns:1fr;gap:20px}
+.stat-item h3{font-size:2rem}
+.why-grid{grid-template-columns:1fr}
+.courses-grid{grid-template-columns:1fr}
+.gallery-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<!-- Nav -->
+<nav class="nav" id="nav">
+<div class="nav-inner">
+<a href="#home" class="nav-logo"><img src="nanda-classes.png" alt="Nanda Classes" style="height:36px;width:auto;margin-right:8px;border-radius:6px;vertical-align:middle">NANDA<span>CLASSES</span></a>
+<ul class="nav-links" id="navLinks">
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#courses">Courses</a></li>
+<li><a href="#faculty">Faculty</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+<button class="hamburger" id="hamburger" aria-label="Menu">
+<span></span><span></span><span></span>
+</button>
+</div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#courses">Courses</a>
+<a href="#faculty">Faculty</a>
+<a href="#gallery">Gallery</a>
+<a href="#contact">Contact</a>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<!-- Hero -->
+<section class="hero" id="home">
+<div class="container">
+<div>
+<div class="hero-badge">Since 2012 — Karnal, Haryana</div>
+<h1 class="hero-title">Master Every<br><span>Subject.</span> Excel Every <span>Exam.</span></h1>
+<p class="hero-tagline">Nanda Classes is the premier coaching destination for Classes 9–12 in Karnal. CBSE &amp; Haryana Board — all subjects under one roof.</p>
+<div class="hero-buttons">
+<a href="tel:+91892922788" class="btn btn-primary"><i data-lucide="phone" size="20"></i> Call Now</a>
+<a href="https://maps.google.com/?cid=16027435845303391714" target="_blank" class="btn btn-outline"><i data-lucide="map-pin" size="20"></i> Visit on Maps</a>
+</div>
+</div>
+<div class="hero-visual">
+<div class="hero-shape">
+<div class="hero-shape-inner">
+<img src="nanda-classes.png" alt="Nanda Classes Logo" style="width:120px;height:120px;object-fit:contain;border-radius:12px;">
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Stats -->
+<section class="stats" id="about">
+<div class="container">
+<div class="stats-grid">
+<div class="stat-item fade-in-up"><h3 id="stat1">12+</h3><p>Years Experience</p></div>
+<div class="stat-item fade-in-up"><h3 id="stat2">5000+</h3><p>Students Mentored</p></div>
+<div class="stat-item fade-in-up"><h3 id="stat3">98%</h3><p>Result Rate</p></div>
+</div>
+<p class="stat-note">* Sample data for illustration purposes</p>
+</div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="section" id="why">
+<div class="container">
+<h2 class="section-title">Why <span>Choose</span> Us</h2>
+<p class="section-sub">What makes Nanda Classes the academic powerhouse of Karnal</p>
+<div class="why-grid">
+<div class="why-card fade-in-up">
+<div class="icon-wrap"><i data-lucide="award" size="28"></i></div>
+<h3>Proven Track Record</h3>
+<p>12+ years of academic excellence with top board results year after year.</p>
+</div>
+<div class="why-card fade-in-up">
+<div class="icon-wrap"><i data-lucide="users" size="28"></i></div>
+<h3>Expert Faculty</h3>
+<p>Highly qualified teachers dedicated to personalised student mentorship.</p>
+</div>
+<div class="why-card fade-in-up">
+<div class="icon-wrap"><i data-lucide="book-open" size="28"></i></div>
+<h3>Comprehensive Coverage</h3>
+<p>All subjects, both boards, Classes 9–12 — every syllabus meticulously covered.</p>
+</div>
+<div class="why-card fade-in-up">
+<div class="icon-wrap"><i data-lucide="target" size="28"></i></div>
+<h3>Result-Oriented</h3>
+<p>Strategic exam preparation with regular tests, feedback, and progress tracking.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Courses -->
+<section class="section" id="courses">
+<div class="container">
+<h2 class="section-title">Courses <span>Offered</span></h2>
+<p class="section-sub">Comprehensive academic programmes for every learner</p>
+<div class="courses-grid">
+<div class="course-card fade-in-up">
+<div class="icon-wrap"><i data-lucide="book" size="32"></i></div>
+<h3>Class 9</h3>
+<p class="board">CBSE &amp; Haryana Board</p>
+<p>Build a strong foundation with all subjects — Science, Maths, Social Science, English, Hindi.</p>
+<div class="subjects"><span>Science</span><span>Maths</span><span>SST</span><span>English</span></div>
+</div>
+<div class="course-card fade-in-up">
+<div class="icon-wrap"><i data-lucide="book-open" size="32"></i></div>
+<h3>Class 10</h3>
+<p class="board">CBSE &amp; Haryana Board</p>
+<p>Board exam focused coaching with intensive practice, sample papers, and doubt sessions.</p>
+<div class="subjects"><span>Science</span><span>Maths</span><span>SST</span><span>English</span></div>
+</div>
+<div class="course-card fade-in-up">
+<div class="icon-wrap"><i data-lucide="layers" size="32"></i></div>
+<h3>Class 11</h3>
+<p class="board">CBSE &amp; Haryana Board</p>
+<p>Science (PCM/PCB) and Commerce streams with in-depth conceptual clarity and regular assessments.</p>
+<div class="subjects"><span>Physics</span><span>Chemistry</span><span>Maths</span><span>Biology</span></div>
+</div>
+<div class="course-card fade-in-up">
+<div class="icon-wrap"><i data-lucide="layers" size="32"></i></div>
+<h3>Class 12</h3>
+<p class="board">CBSE &amp; Haryana Board</p>
+<p>Board-excellence programme with mock tests, previous-year papers, and personalised mentoring.</p>
+<div class="subjects"><span>Physics</span><span>Chemistry</span><span>Maths</span><span>Biology</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Faculty -->
+<section class="section" id="faculty">
+<div class="container">
+<h2 class="section-title">Our <span>Faculty</span></h2>
+<p class="section-sub">Meet the mentors behind the results</p>
+<div class="faculty-grid">
+<div class="faculty-card fade-in-up">
+<div class="avatar"><i data-lucide="user" size="48"></i></div>
+<h3>Mr. Anil Nanda</h3>
+<p class="role">Founder &amp; Lead Mentor</p>
+<p>12+ years of teaching experience. Specialises in Mathematics and Physics.</p>
+</div>
+<div class="faculty-card fade-in-up">
+<div class="avatar"><i data-lucide="user" size="48"></i></div>
+<h3>Mrs. Sunita Verma</h3>
+<p class="role">Senior Science Faculty</p>
+<p>Expert in Chemistry and Biology with a passion for simplifying complex concepts.</p>
+</div>
+<div class="faculty-card fade-in-up">
+<div class="avatar"><i data-lucide="user" size="48"></i></div>
+<h3>Mr. Rajesh Kumar</h3>
+<p class="role">English &amp; SST Faculty</p>
+<p>Masters in English Literature; known for engaging and interactive classroom sessions.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Testimonials -->
+<section class="section" id="testimonials" style="background:#f8f9fa">
+<div class="container">
+<h2 class="section-title">What <span>Students</span> Say</h2>
+<p class="section-sub">Hear from those who have been through the journey</p>
+<div class="testimonial-carousel" id="testimonialCarousel">
+<div class="testimonial-slides" id="testimonialSlides">
+<div class="testimonial-slide">
+<div class="testimonial-card">
+<div class="quote">"</div>
+<p>Nanda Classes transformed my approach to board exams. The personalised attention and regular mock tests gave me the confidence to score 95% in Class 12.</p>
+<div class="name">Priya Sharma</div>
+<div class="detail">Class 12 Topper, CBSE 2024</div>
+</div>
+</div>
+<div class="testimonial-slide">
+<div class="testimonial-card">
+<div class="quote">"</div>
+<p>The faculty here doesn't just teach — they mentor. I struggled with Physics until I joined Nanda Classes. Now it's my favourite subject!</p>
+<div class="name">Rohit Singh</div>
+<div class="detail">Class 12, Science Stream</div>
+</div>
+</div>
+<div class="testimonial-slide">
+<div class="testimonial-card">
+<div class="quote">"</div>
+<p>A fantastic learning environment with a perfect balance of discipline and encouragement. Grateful for the guidance throughout my board year.</p>
+<div class="name">Ananya Gupta</div>
+<div class="detail">Class 10, Haryana Board</div>
+</div>
+</div>
+</div>
+<button class="carousel-btn prev" id="prevBtn" aria-label="Previous"><i data-lucide="chevron-left" size="24"></i></button>
+<button class="carousel-btn next" id="nextBtn" aria-label="Next"><i data-lucide="chevron-right" size="24"></i></button>
+<div class="carousel-dots" id="carouselDots"></div>
+</div>
+</div>
+</section>
+
+<!-- Gallery -->
+<section class="section" id="gallery">
+<div class="container">
+<h2 class="section-title">Our <span>Gallery</span></h2>
+<p class="section-sub">Glimpses of life at Nanda Classes</p>
+<div class="gallery-grid">
+<div class="gallery-card fade-in-up"><i data-lucide="image" size="32"></i><span>Image Placeholder</span></div>
+<div class="gallery-card fade-in-up"><i data-lucide="image" size="32"></i><span>Image Placeholder</span></div>
+<div class="gallery-card fade-in-up"><i data-lucide="image" size="32"></i><span>Image Placeholder</span></div>
+<div class="gallery-card fade-in-up"><i data-lucide="image" size="32"></i><span>Image Placeholder</span></div>
+</div>
+</div>
+</section>
+
+<!-- Contact -->
+<section class="section" id="contact">
+<div class="container">
+<h2 class="section-title">Get In <span>Touch</span></h2>
+<p class="section-sub">Ready to start your academic journey? Reach out to us today.</p>
+<div class="contact-grid">
+<div class="contact-info">
+<h3>Contact Information</h3>
+<div class="info-item"><i data-lucide="phone" size="20"></i><div><div class="label">Phone</div><div class="value"><a href="tel:+91892922788">+91 89292 22788</a></div></div></div>
+<div class="info-item"><i data-lucide="mail" size="20"></i><div><div class="label">Email</div><div class="value">info@nandaclasses.com</div></div></div>
+<div class="info-item"><i data-lucide="map-pin" size="20"></i><div><div class="label">Address</div><div class="value">Near Bus Stand, Karnal, Haryana — 132001</div></div></div>
+<div class="info-item"><i data-lucide="clock" size="20"></i><div><div class="label">Hours</div><div class="value">Mon — Sat, 7:00 AM – 8:00 PM</div></div></div>
+<div class="contact-buttons">
+<a href="tel:+91892922788" class="btn btn-primary"><i data-lucide="phone" size="20"></i> Call Now</a>
+<a href="https://www.instagram.com/nandaclasses" target="_blank" class="btn btn-dark"><i data-lucide="instagram" size="20"></i> Instagram</a>
+</div>
+</div>
+<div class="contact-form fade-in-up">
+<h3>Send us a Message</h3>
+<form onsubmit="event.preventDefault();alert('Thank you for reaching out! We will get back to you shortly.');this.reset()">
+<div class="form-group"><input type="text" placeholder="Your Name" required></div>
+<div class="form-group"><input type="tel" placeholder="Phone Number" required></div>
+<div class="form-group"><select required><option value="">Select Class</option><option>Class 9</option><option>Class 10</option><option>Class 11</option><option>Class 12</option></select></div>
+<div class="form-group"><textarea placeholder="Your Message (optional)"></textarea></div>
+<button type="submit" class="btn btn-primary" style="width:100%;justify-content:center"><i data-lucide="send" size="20"></i> Send Message</button>
+</form>
+</div>
+</div>
+<div class="map-wrap fade-in-up"><iframe src="https://maps.google.com/maps?cid=16027435845303391714&output=embed" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Nanda Classes Location"></iframe></div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-about">
+<h3>NANDA<span>CLASSES</span></h3>
+<p>Karnal's trusted coaching centre for Classes 9–12. CBSE &amp; Haryana Board. All subjects. Proven results since 2012. <span style="color:#3B82F6;font-weight:700">Master Every Subject. Excel Every Exam.</span></p>
+<div class="footer-social">
+<a href="https://www.instagram.com/nandaclasses" target="_blank" aria-label="Instagram"><i data-lucide="instagram" size="18"></i></a>
+<a href="https://maps.google.com/?cid=16027435845303391714" target="_blank" aria-label="Maps"><i data-lucide="map-pin" size="18"></i></a>
+</div>
+</div>
+<div class="footer-links"><h4>Quick Links</h4><ul><li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#courses">Courses</a></li><li><a href="#faculty">Faculty</a></li></ul></div>
+<div class="footer-links"><h4>More</h4><ul><li><a href="#testimonials">Testimonials</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#contact">Contact</a></li></ul></div>
+<div class="footer-links"><h4>Contact</h4><ul><li><a href="tel:+91892922788">+91 89292 22788</a></li><li><a href="https://maps.google.com/?cid=16027435845303391714" target="_blank">Find on Maps</a></li><li><a href="https://www.instagram.com/nandaclasses" target="_blank">Instagram</a></li></ul></div>
+</div>
+<div class="footer-bottom">&copy; 2024 <a href="#">Nanda Classes</a>. All rights reserved. <span style="opacity:.5">| * Stats shown are sample data</span></div>
+</div>
+</footer>
+
+<script>
+lucide.createIcons();
+
+// Hamburger
+const hamburger=document.getElementById('hamburger');
+const mobileNav=document.getElementById('mobileNav');
+const overlay=document.getElementById('overlay');
+function toggleMenu(){hamburger.classList.toggle('active');mobileNav.classList.toggle('open');overlay.classList.toggle('show')}
+hamburger.addEventListener('click',toggleMenu);
+overlay.addEventListener('click',toggleMenu);
+document.querySelectorAll('.mobile-nav a').forEach(a=>a.addEventListener('click',toggleMenu));
+
+// Nav scroll effect
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)});
+
+// Intersection Observer fade-in
+const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible')}})},{threshold:.15});
+document.querySelectorAll('.fade-in-up').forEach(el=>observer.observe(el));
+
+// Stats count-up
+function animateCount(el,target,isSuffix){let current=0;const step=Math.ceil(target/60);const timer=setInterval(()=>{current+=step;if(current>=target){current=target;clearInterval(timer)}el.textContent=isSuffix?current+'+':current+'%'},20)}
+const statObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){statObserver.disconnect();animateCount(document.getElementById('stat1'),12,true);animateCount(document.getElementById('stat2'),5000,true);animateCount(document.getElementById('stat3'),98,false)}})},{threshold:.5});
+statObserver.observe(document.querySelector('.stats'));
+
+// Testimonial carousel
+const slides=document.getElementById('testimonialSlides');
+const slidesCount=document.querySelectorAll('.testimonial-slide').length;
+const dotsContainer=document.getElementById('carouselDots');
+let currentSlide=0;
+for(let i=0;i<slidesCount;i++){const btn=document.createElement('button');btn.addEventListener('click',()=>goToSlide(i));dotsContainer.appendChild(btn)}
+const dots= dotsContainer.querySelectorAll('button');
+function goToSlide(n){currentSlide=n;slides.style.transform='translateX(-'+(n*100)+'%)';dots.forEach((d,i)=>d.classList.toggle('active',i===n))}
+document.getElementById('prevBtn').addEventListener('click',()=>goToSlide(currentSlide===0?slidesCount-1:currentSlide-1));
+document.getElementById('nextBtn').addEventListener('click',()=>goToSlide(currentSlide===0?1:currentSlide+1));
+goToSlide(0);
+setInterval(()=>goToSlide((currentSlide+1)%slidesCount),5000);
+
+// Active nav link highlight
+const sections=document.querySelectorAll('section[id]');
+window.addEventListener('scroll',()=>{let current='';sections.forEach(s=>{const top=s.offsetTop-150;if(window.scrollY>=top)current=s.getAttribute('id')});document.querySelectorAll('.nav-links a').forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+current)})});
+</script>
+</body>
+</html>

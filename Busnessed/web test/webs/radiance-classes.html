@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radiance Classes | Premium Coaching in Karnal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0F0A1E;
+      color: #fff;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    section { padding: 100px 0; }
+
+    /* Glass utility */
+    .glass {
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+    }
+
+    /* Gold accent */
+    .gold { color: #A78BFA; }
+    .gold-bg { background: #7C3AED; }
+    .gold-border { border-color: #7C3AED; }
+
+    /* Entrance animation base */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ============ NAV ============ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      padding: 16px 0;
+      transition: all 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(15,10,30,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(124,58,237,0.15);
+      padding: 12px 0;
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: #7C3AED; }
+    .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #A78BFA;
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      padding: 8px 20px;
+      background: linear-gradient(135deg, #7C3AED, #6D28D9);
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 13px;
+      color: #0F0A1E !important;
+    }
+    .nav-cta::after { display: none !important; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      z-index: 1000;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* ============ HERO ============ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: #0F0A1E;
+      padding-top: 80px;
+    }
+    /* CSS-only star particle effect */
+    .stars {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .star {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: #fff;
+      border-radius: 50%;
+      animation: twinkle var(--dur) ease-in-out infinite alternate;
+    }
+    .star:nth-child(1) { top: 10%; left: 15%; --dur: 2.3s; animation-delay: 0s; opacity: 0.6; width: 2px; height: 2px; }
+    .star:nth-child(2) { top: 25%; left: 80%; --dur: 3.1s; animation-delay: 0.7s; opacity: 0.8; }
+    .star:nth-child(3) { top: 40%; left: 10%; --dur: 1.8s; animation-delay: 1.2s; opacity: 0.5; width: 2px; height: 2px; }
+    .star:nth-child(4) { top: 55%; left: 70%; --dur: 2.7s; animation-delay: 0.3s; }
+    .star:nth-child(5) { top: 15%; left: 50%; --dur: 2.1s; animation-delay: 0.9s; opacity: 0.7; width: 2px; height: 2px; }
+    .star:nth-child(6) { top: 70%; left: 25%; --dur: 3.3s; animation-delay: 1.5s; }
+    .star:nth-child(7) { top: 85%; left: 60%; --dur: 2.5s; animation-delay: 0.4s; opacity: 0.6; width: 2px; height: 2px; }
+    .star:nth-child(8) { top: 45%; left: 90%; --dur: 2.9s; animation-delay: 0.1s; opacity: 0.5; }
+    .star:nth-child(9) { top: 8%; left: 35%; --dur: 2.0s; animation-delay: 1.8s; opacity: 0.8; }
+    .star:nth-child(10) { top: 75%; left: 45%; --dur: 2.6s; animation-delay: 0.6s; }
+    .star:nth-child(11) { top: 35%; left: 55%; --dur: 1.9s; animation-delay: 2.0s; opacity: 0.4; width: 2px; height: 2px; }
+    .star:nth-child(12) { top: 90%; left: 20%; --dur: 3.0s; animation-delay: 0.2s; }
+    .star:nth-child(13) { top: 60%; left: 5%; --dur: 2.4s; animation-delay: 1.1s; opacity: 0.7; width: 2px; height: 2px; }
+    .star:nth-child(14) { top: 20%; left: 95%; --dur: 2.2s; animation-delay: 0.8s; }
+    .star:nth-child(15) { top: 50%; left: 40%; --dur: 1.7s; animation-delay: 1.6s; opacity: 0.5; }
+
+    @keyframes twinkle {
+      0% { opacity: 0.2; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* Glow orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .orb-1 {
+      width: 400px; height: 400px;
+      background: rgba(124,58,237,0.12);
+      top: -100px; right: -100px;
+      animation: floatOrb 8s ease-in-out infinite alternate;
+    }
+    .orb-2 {
+      width: 350px; height: 350px;
+      background: rgba(124,58,237,0.06);
+      bottom: -80px; left: -80px;
+      animation: floatOrb 10s ease-in-out infinite alternate-reverse;
+    }
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(60px, -60px) scale(1.1); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: 50px;
+      background: rgba(124,58,237,0.1);
+      border: 1px solid rgba(124,58,237,0.25);
+      font-size: 13px;
+      font-weight: 500;
+      color: #A78BFA;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(40px, 8vw, 80px);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 16px;
+      letter-spacing: -2px;
+    }
+    .hero h1 .glow {
+      background: linear-gradient(135deg, #7C3AED, #A78BFA, #7C3AED);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 4s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    .hero p {
+      font-size: clamp(16px, 2vw, 20px);
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 36px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      padding: 16px 36px;
+      background: linear-gradient(135deg, #7C3AED, #6D28D9);
+      border: none;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #0F0A1E;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(124,58,237,0.3);
+    }
+    .btn-outline {
+      padding: 16px 36px;
+      border: 2px solid rgba(255,255,255,0.15);
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s;
+      background: transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-outline:hover {
+      border-color: #A78BFA;
+      color: #A78BFA;
+      transform: translateY(-2px);
+    }
+
+    /* ============ SECTION HEADERS ============ */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #A78BFA;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      color: rgba(255,255,255,0.5);
+      font-size: 16px;
+      max-width: 560px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+    .text-center { text-align: center; }
+
+    /* ============ STATS ============ */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .stat-card {
+      padding: 36px 24px;
+      text-align: center;
+    }
+    .stat-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: rgba(124,58,237,0.12);
+      border: 1px solid rgba(124,58,237,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      color: #A78BFA;
+    }
+    .stat-card h3 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 4px;
+    }
+    .stat-card p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ============ USP ============ */
+    .usp-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .usp-card {
+      padding: 32px 24px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(124,58,237,0.12);
+      transition: all 0.4s;
+    }
+    .usp-card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(124,58,237,0.35);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(124,58,237,0.06);
+    }
+    .usp-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(124,58,237,0.05));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      color: #A78BFA;
+    }
+    .usp-card h4 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .usp-card p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+    }
+
+    /* ============ COURSES ============ */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .course-card {
+      padding: 28px 24px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+    .course-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #7C3AED, transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .course-card:hover::before { opacity: 1; }
+    .course-card:hover {
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-4px);
+    }
+    .course-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(124,58,237,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      color: #A78BFA;
+    }
+    .course-card h4 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .course-card p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ============ FACULTY ============ */
+    .faculty-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .faculty-card {
+      padding: 28px 20px;
+      text-align: center;
+    }
+    .faculty-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(255,255,255,0.05));
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      border: 2px solid rgba(124,58,237,0.15);
+    }
+    .faculty-card h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .faculty-card p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ============ TESTIMONIALS ============ */
+    .testimonials-track {
+      display: flex;
+      gap: 24px;
+      overflow: hidden;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .testimonial-card {
+      min-width: calc(50% - 12px);
+      padding: 32px 28px;
+      scroll-snap-align: start;
+    }
+    .testimonial-stars {
+      display: flex;
+      gap: 4px;
+      color: #A78BFA;
+      margin-bottom: 16px;
+    }
+    .testimonial-card blockquote {
+      font-size: 15px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .test-auth-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(124,58,237,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: rgba(255,255,255,0.3);
+    }
+    .testimonial-author strong {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .testimonial-author span {
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+    }
+    .testimonial-nav {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .testimonial-nav button {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    .testimonial-nav button:hover {
+      background: rgba(124,58,237,0.15);
+      border-color: #7C3AED;
+      color: #A78BFA;
+    }
+
+    /* ============ GALLERY ============ */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .gallery-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, rgba(124,58,237,0.05), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: rgba(255,255,255,0.25);
+      transition: all 0.4s;
+    }
+    .gallery-item:hover {
+      border-color: rgba(124,58,237,0.3);
+      transform: scale(1.02);
+    }
+    .gallery-item .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(124,58,237,0.2), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .gallery-item:hover .overlay { opacity: 1; }
+
+    /* ============ CONTACT ============ */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .contact-info h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .contact-item i {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(124,58,237,0.1);
+      border: 1px solid rgba(124,58,237,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #A78BFA;
+    }
+    .contact-item a, .contact-item p {
+      color: rgba(255,255,255,0.7);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .contact-item a:hover { color: #A78BFA; }
+    .contact-map {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+      margin-top: 24px;
+    }
+    .contact-map iframe { width: 100%; height: 240px; border: 0; display: block; }
+
+    .contact-form {
+      padding: 36px 32px;
+    }
+    .contact-form h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #fff;
+      transition: all 0.3s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: #7C3AED;
+      background: rgba(255,255,255,0.06);
+      box-shadow: 0 0 0 3px rgba(124,58,237,0.08);
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255,255,255,0.25);
+    }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-group select { color: rgba(255,255,255,0.5); }
+    .form-group select option { background: #0F0A1E; color: #fff; }
+
+    /* ============ FOOTER ============ */
+    footer {
+      background: rgba(255,255,255,0.02);
+      border-top: 1px solid rgba(255,255,255,0.04);
+      padding: 48px 0 24px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-brand .logo { margin-bottom: 12px; display: inline-block; }
+    .footer-brand p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.7;
+      max-width: 320px;
+    }
+    .footer-socials {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .footer-socials a {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.4);
+      transition: all 0.3s;
+    }
+    .footer-socials a:hover {
+      background: rgba(124,58,237,0.12);
+      border-color: rgba(124,58,237,0.3);
+      color: #A78BFA;
+    }
+    footer h5 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+    footer ul { list-style: none; }
+    footer ul li { margin-bottom: 10px; }
+    footer ul a {
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+      transition: color 0.3s;
+    }
+    footer ul a:hover { color: #A78BFA; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.04);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .footer-bottom p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ============ MOBILE NAV ============ */
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: rgba(15,10,30,0.95);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        flex-direction: column;
+        padding: 100px 32px 32px;
+        gap: 20px;
+        transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        border-left: 1px solid rgba(255,255,255,0.06);
+        align-items: flex-start;
+      }
+      .nav-links.open { right: 0; }
+      .nav-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 998;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s;
+      }
+      .nav-overlay.active { opacity: 1; pointer-events: all; }
+
+      .stats-grid { grid-template-columns: 1fr; }
+      .usp-grid { grid-template-columns: 1fr 1fr; }
+      .courses-grid { grid-template-columns: 1fr 1fr; }
+      .faculty-grid { grid-template-columns: 1fr 1fr; }
+      .testimonial-card { min-width: calc(100% - 0px); }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .usp-grid { grid-template-columns: 1fr; }
+      .courses-grid { grid-template-columns: 1fr; }
+      .faculty-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero-btns { flex-direction: column; align-items: center; }
+      .hero h1 { font-size: 36px; }
+      section { padding: 60px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <nav id="navbar">
+    <div class="nav-inner">
+          <a href="#" class="logo"><img src="radiance-classes.png" alt="Radiance Classes" style="height:32px;width:auto;margin-right:8px;border-radius:6px;vertical-align:middle">Radiance<span>Classes</span></a>
+      <div class="nav-overlay" id="navOverlay"></div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero" onclick="closeNav()">Home</a></li>
+        <li><a href="#about" onclick="closeNav()">About</a></li>
+        <li><a href="#courses" onclick="closeNav()">Courses</a></li>
+        <li><a href="#faculty" onclick="closeNav()">Faculty</a></li>
+        <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+        <li><a href="#contact" class="nav-cta" onclick="closeNav()">Enquire Now</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="stars">
+      <div class="star"></div><div class="star"></div><div class="star"></div>
+      <div class="star"></div><div class="star"></div><div class="star"></div>
+      <div class="star"></div><div class="star"></div><div class="star"></div>
+      <div class="star"></div><div class="star"></div><div class="star"></div>
+      <div class="star"></div><div class="star"></div><div class="star"></div>
+    </div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i data-lucide="sparkles" style="width:16px;height:16px;"></i>
+        Karnal's Premier Coaching Centre
+      </div>
+      <h1><span class="glow">Illuminating Minds</span><br>Shaping Futures.</h1>
+      <p>Premium coaching for Classes 9–12 | CBSE & Haryana Board | All Subjects under one roof.</p>
+      <img src="radiance-classes.png" alt="Radiance Classes Logo" style="height:100px;width:auto;margin:0 auto 20px;display:block;border-radius:12px;">
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">
+          Get Started <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
+        </a>
+        <a href="#courses" class="btn-outline">
+          <i data-lucide="book-open" style="width:18px;height:18px;"></i> Our Courses
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATS ============ -->
+  <section id="about">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card glass reveal">
+          <div class="stat-icon"><i data-lucide="users" style="width:24px;height:24px;"></i></div>
+          <h3>500+</h3>
+          <p>Students Enrolled (Sample Data)</p>
+        </div>
+        <div class="stat-card glass reveal">
+          <div class="stat-icon"><i data-lucide="trophy" style="width:24px;height:24px;"></i></div>
+          <h3>98%</h3>
+          <p>Board Pass Percentage (Sample Data)</p>
+        </div>
+        <div class="stat-card glass reveal">
+          <div class="stat-icon"><i data-lucide="award" style="width:24px;height:24px;"></i></div>
+          <h3>15+</h3>
+          <p>Years of Excellence (Sample Data)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHY US ============ -->
+  <section>
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-label"><i data-lucide="star" style="width:14px;height:14px;"></i> Why Choose Us</div>
+        <h2 class="section-title">What Makes Radiance <span class="gold">Different</span></h2>
+        <p class="section-sub">We combine experienced faculty with a proven methodology to help every student reach their full potential.</p>
+      </div>
+      <div class="usp-grid">
+        <div class="usp-card reveal">
+          <div class="usp-icon"><i data-lucide="graduation-cap" style="width:24px;height:24px;"></i></div>
+          <h4>Expert Faculty</h4>
+          <p>Highly qualified teachers with 10+ years of experience in CBSE & Haryana Board curriculum.</p>
+        </div>
+        <div class="usp-card reveal">
+          <div class="usp-icon"><i data-lucide="target" style="width:24px;height:24px;"></i></div>
+          <h4>Personalized Attention</h4>
+          <p>Batch sizes limited to 25 students, ensuring every child gets the attention they deserve.</p>
+        </div>
+        <div class="usp-card reveal">
+          <div class="usp-icon"><i data-lucide="file-text" style="width:24px;height:24px;"></i></div>
+          <h4>Regular Assessments</h4>
+          <p>Weekly tests, monthly progress reports, and detailed performance analysis for each student.</p>
+        </div>
+        <div class="usp-card reveal">
+          <div class="usp-icon"><i data-lucide="compass" style="width:24px;height:24px;"></i></div>
+          <h4>Holistic Growth</h4>
+          <p>Beyond academics — personality development, career guidance, and stress management sessions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COURSES ============ -->
+  <section id="courses">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-label"><i data-lucide="book-open" style="width:14px;height:14px;"></i> Our Courses</div>
+        <h2 class="section-title">Comprehensive <span class="gold">Academic Programs</span></h2>
+        <p class="section-sub">All subjects covered for Classes 9 to 12 under CBSE and Haryana Board curricula.</p>
+      </div>
+      <div class="courses-grid">
+        <div class="course-card reveal">
+          <div class="course-icon"><i data-lucide="calculator" style="width:22px;height:22px;"></i></div>
+          <h4>Mathematics</h4>
+          <p>Algebra, Geometry, Calculus & Statistics — Classes 9–12</p>
+        </div>
+        <div class="course-card reveal">
+          <div class="course-icon"><i data-lucide="flask-conical" style="width:22px;height:22px;"></i></div>
+          <h4>Science</h4>
+          <p>Physics, Chemistry & Biology with lab sessions</p>
+        </div>
+        <div class="course-card reveal">
+          <div class="course-icon"><i data-lucide="book-text" style="width:22px;height:22px;"></i></div>
+          <h4>English</h4>
+          <p>Grammar, Literature & Writing skills for board exams</p>
+        </div>
+        <div class="course-card reveal">
+          <div class="course-icon"><i data-lucide="globe" style="width:22px;height:22px;"></i></div>
+          <h4>Social Studies</h4>
+          <p>History, Geography, Civics & Economics — in-depth coverage</p>
+        </div>
+        <div class="course-card reveal">
+          <div class="course-icon"><i data-lucide="languages" style="width:22px;height:22px;"></i></div>
+          <h4>Hindi & Sanskrit</h4>
+          <p>Literature & language for board exam success</p>
+        </div>
+        <div class="course-card reveal">
+          <div class="course-icon"><i data-lucide="layers" style="width:22px;height:22px;"></i></div>
+          <h4>All-in-One Batches</h4>
+          <p>Comprehensive batches covering all subjects for Classes 9–12</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FACULTY ============ -->
+  <section id="faculty">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-label"><i data-lucide="users" style="width:14px;height:14px;"></i> Our Faculty</div>
+        <h2 class="section-title">Meet Our <span class="gold">Expert Educators</span></h2>
+        <p class="section-sub">Dedicated professionals committed to nurturing academic excellence in every student.</p>
+      </div>
+      <div class="faculty-grid">
+        <div class="faculty-card glass reveal">
+          <div class="faculty-avatar"><i data-lucide="user" style="width:32px;height:32px;"></i></div>
+          <h4>Dr. Amit Sharma</h4>
+          <p>Physics — 14 years exp.</p>
+        </div>
+        <div class="faculty-card glass reveal">
+          <div class="faculty-avatar"><i data-lucide="user" style="width:32px;height:32px;"></i></div>
+          <h4>Ms. Priya Verma</h4>
+          <p>Mathematics — 12 years exp.</p>
+        </div>
+        <div class="faculty-card glass reveal">
+          <div class="faculty-avatar"><i data-lucide="user" style="width:32px;height:32px;"></i></div>
+          <h4>Mr. Rajesh Kumar</h4>
+          <p>Chemistry — 10 years exp.</p>
+        </div>
+        <div class="faculty-card glass reveal">
+          <div class="faculty-avatar"><i data-lucide="user" style="width:32px;height:32px;"></i></div>
+          <h4>Mrs. Ananya Gupta</h4>
+          <p>English — 15 years exp.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section>
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-label"><i data-lucide="message-square-quote" style="width:14px;height:14px;"></i> Testimonials</div>
+        <h2 class="section-title">What Our Students <span class="gold">Say</span></h2>
+        <p class="section-sub">Hear from our students about their journey at Radiance Classes.</p>
+      </div>
+      <div class="testimonials-track" id="testimonialTrack">
+        <div class="testimonial-card glass reveal">
+          <div class="testimonial-stars">
+            <i data-lucide="star" style="width:16px;height:16px;"></i>
+            <i data-lucide="star" style="width:16px;height:16px;"></i>
+            <i data-lucide="star" style="width:16px;height:16px;"></i>
+            <i data-lucide="star" style="width:16px;height:16px;"></i>
+            <i data-lucide="star" style="width:16px;height:16px;"></i>
+          </div>
+          <blockquote>"Radiance Classes completely transformed my approach to studying. The faculty here is incredibly supportive and the study material is top-notch."</blockquote>
+          <div class="testimonial-author">
+            <div class="test-auth-avatar"><i data-lucide="user" style="width:18px;height:18px;"></i></div>
+            <div>
+              <strong>Arjun Mehta</strong>
+              <span>Class 12 Science (Sample)</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card glass reveal">
+          <div class="testimonial-stars">
+            <i data-lucide="star" style="width:16px;height:16px;"></i>
+            <i data-lucide="star" style="width:16px;height:16px;"></i>
+            <i data-lucide="star" style="width:16px;height:16px;"></i>
+            <i data-lucide="star" style="width:16px;height:16px;"></i>
+            <i data-lucide="star" style="width:16px;height:16px;"></i>
+          </div>
+          <blockquote>"I improved my Maths score from 60% to 95% in just one year. The personalized attention and regular tests made all the difference."</blockquote>
+          <div class="testimonial-author">
+            <div class="test-auth-avatar"><i data-lucide="user" style="width:18px;height:18px;"></i></div>
+            <div>
+              <strong>Riya Kapoor</strong>
+              <span>Class 10 CBSE (Sample)</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card glass reveal">
+          <div class="testimonial-stars">
+            <i data-lucide="star" style="width:16px;height:16px;"></i>
+            <i data-lucide="star" style="width:16px;height:16px;"></i>
+            <i data-lucide="star" style="width:16px;height:16px;"></i>
+            <i data-lucide="star" style="width:16px;height:16px;"></i>
+            <i data-lucide="star" style="width:16px;height:16px;"></i>
+          </div>
+          <blockquote>"The best coaching centre in Karnal! Small batch sizes meant I could clear every doubt without hesitation. Highly recommended."</blockquote>
+          <div class="testimonial-author">
+            <div class="test-auth-avatar"><i data-lucide="user" style="width:18px;height:18px;"></i></div>
+            <div>
+              <strong>Vikram Singh</strong>
+              <span>Class 12 Commerce (Sample)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-nav">
+        <button id="testPrev" aria-label="Previous"><i data-lucide="chevron-left" style="width:20px;height:20px;"></i></button>
+        <button id="testNext" aria-label="Next"><i data-lucide="chevron-right" style="width:20px;height:20px;"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section>
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-label"><i data-lucide="image" style="width:14px;height:14px;"></i> Gallery</div>
+        <h2 class="section-title">Glance at <span class="gold">Radiance</span></h2>
+        <p class="section-sub">A peek into our learning environment, events, and celebrations.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item reveal">
+          <span>Image Placeholder</span>
+          <div class="overlay"></div>
+        </div>
+        <div class="gallery-item reveal">
+          <span>Image Placeholder</span>
+          <div class="overlay"></div>
+        </div>
+        <div class="gallery-item reveal">
+          <span>Image Placeholder</span>
+          <div class="overlay"></div>
+        </div>
+        <div class="gallery-item reveal">
+          <span>Image Placeholder</span>
+          <div class="overlay"></div>
+        </div>
+        <div class="gallery-item reveal">
+          <span>Image Placeholder</span>
+          <div class="overlay"></div>
+        </div>
+        <div class="gallery-item reveal">
+          <span>Image Placeholder</span>
+          <div class="overlay"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact">
+    <div class="container">
+      <div class="text-center reveal">
+        <div class="section-label"><i data-lucide="phone" style="width:14px;height:14px;"></i> Get In Touch</div>
+        <h2 class="section-title">Ready to Start Your <span class="gold">Journey?</span></h2>
+        <p class="section-sub">Reach out to us and let's discuss how we can help you achieve academic excellence.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="reveal">
+          <div class="contact-info">
+            <h3>Contact Information</h3>
+            <div class="contact-item">
+              <i data-lucide="phone" style="width:20px;height:20px;"></i>
+              <div>
+                <p style="font-size:13px;color:rgba(255,255,255,0.35);margin-bottom:2px;">Call Us</p>
+                <a href="tel:+917404601260">+91 7404601260</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i data-lucide="instagram" style="width:20px;height:20px;"></i>
+              <div>
+                <p style="font-size:13px;color:rgba(255,255,255,0.35);margin-bottom:2px;">Follow Us</p>
+                <a href="https://www.instagram.com/radianceclasseskarnal" target="_blank">@radianceclasseskarnal</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i data-lucide="map-pin" style="width:20px;height:20px;"></i>
+              <div>
+                <p style="font-size:13px;color:rgba(255,255,255,0.35);margin-bottom:2px;">Visit Us</p>
+                <a href="https://maps.google.com/maps?cid=13229082446240661648" target="_blank">Karnal, Haryana — View on Maps</a>
+              </div>
+            </div>
+            <div class="contact-map">
+              <iframe src="https://maps.google.com/maps?cid=13229082446240661648&output=embed&z=15" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Radiance Classes Location"></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form glass reveal">
+          <h3>Send an Enquiry</h3>
+          <form onsubmit="event.preventDefault(); alert('Thank you! We will get back to you shortly.');">
+            <div class="form-group">
+              <input type="text" placeholder="Full Name" required>
+            </div>
+            <div class="form-group">
+              <input type="tel" placeholder="Phone Number" required>
+            </div>
+            <div class="form-group">
+              <input type="email" placeholder="Email (optional)">
+            </div>
+            <div class="form-group">
+              <select required>
+                <option value="" disabled selected>Select Class</option>
+                <option>Class 9</option>
+                <option>Class 10</option>
+                <option>Class 11 Science</option>
+                <option>Class 11 Commerce</option>
+                <option>Class 12 Science</option>
+                <option>Class 12 Commerce</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <textarea placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">
+              Send Enquiry <i data-lucide="send" style="width:18px;height:18px;"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+<a href="#" class="logo"><img src="radiance-classes.png" alt="Radiance Classes" style="height:32px;width:auto;margin-right:8px;border-radius:6px;vertical-align:middle">Radiance<span>Classes</span></a>
+          <p>Karnal's premier coaching centre for Classes 9–12. Illuminating minds and shaping futures with academic excellence.</p>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/radianceclasseskarnal" target="_blank" aria-label="Instagram">
+              <i data-lucide="instagram" style="width:18px;height:18px;"></i>
+            </a>
+            <a href="tel:+917404601260" aria-label="Phone">
+              <i data-lucide="phone" style="width:18px;height:18px;"></i>
+            </a>
+            <a href="https://maps.google.com/maps?cid=13229082446240661648" target="_blank" aria-label="Location">
+              <i data-lucide="map-pin" style="width:18px;height:18px;"></i>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="#faculty">Faculty</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Courses</h5>
+          <ul>
+            <li><a href="#courses">Class 9 — All Subjects</a></li>
+            <li><a href="#courses">Class 10 — All Subjects</a></li>
+            <li><a href="#courses">Class 11 Science</a></li>
+            <li><a href="#courses">Class 11 Commerce</a></li>
+            <li><a href="#courses">Class 12 Science</a></li>
+            <li><a href="#courses">Class 12 Commerce</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Contact</h5>
+          <ul>
+            <li><a href="tel:+917404601260">+91 7404601260</a></li>
+            <li><a href="https://maps.google.com/maps?cid=13229082446240661648" target="_blank">Karnal, Haryana</a></li>
+            <li><a href="https://www.instagram.com/radianceclasseskarnal" target="_blank">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Radiance Classes, Karnal. All rights reserved.</p>
+        <p>Designed with <i data-lucide="heart" style="width:14px;height:14px;display:inline;color:#7C3AED;"></i></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Lucide Icons
+    lucide.createIcons();
+
+    // Nav Scroll Effect
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Hamburger Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    const navOverlay = document.getElementById('navOverlay');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('open');
+      navOverlay.classList.toggle('active');
+      document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+    });
+
+    navOverlay.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      navLinks.classList.remove('open');
+      navOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    function closeNav() {
+      hamburger.classList.remove('active');
+      navLinks.classList.remove('open');
+      navOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Intersection Observer for entrance animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Testimonial carousel
+    const track = document.getElementById('testimonialTrack');
+    const prevBtn = document.getElementById('testPrev');
+    const nextBtn = document.getElementById('testNext');
+    let scrollPos = 0;
+
+    function getCardWidth() {
+      const card = track.querySelector('.testimonial-card');
+      if (!card) return 400;
+      const style = getComputedStyle(card);
+      const gap = parseInt(getComputedStyle(track).gap) || 24;
+      return card.offsetWidth + gap;
+    }
+
+    nextBtn.addEventListener('click', () => {
+      const step = getCardWidth();
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      scrollPos = Math.min(scrollPos + step, maxScroll);
+      track.scrollTo({ left: scrollPos, behavior: 'smooth' });
+    });
+
+    prevBtn.addEventListener('click', () => {
+      const step = getCardWidth();
+      scrollPos = Math.max(scrollPos - step, 0);
+      track.scrollTo({ left: scrollPos, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

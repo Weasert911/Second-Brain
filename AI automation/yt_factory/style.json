@@ -1,0 +1,43 @@
+{
+  "tone": [
+    "mysterious",
+    "detached",
+    "observational",
+    "slightly unsettling",
+    "clinical"
+  ],
+  "avoid": [
+    "sigma",
+    "alpha male",
+    "cringe motivation",
+    "fake neuroscience"
+  ],
+  "hook_patterns": [
+    "The reason people...",
+    "Nobody notices this until...",
+    "You've [behavior] without realizing why."
+  ],
+  "structures": {
+    "short": {
+      "duration": "20-45s",
+      "flow": [
+        "0-2s: Immediate recognition hook",
+        "2-20s: Rapid examples",
+        "20-35s: Behavior explanation",
+        "35-45s: Disturbing insight / ending"
+      ]
+    },
+    "long": {
+      "duration": "2-3min",
+      "flow": [
+        "0-5s: Hook",
+        "5-40s: Observation expansion",
+        "40-120s: Behavior analysis + examples",
+        "Final 20s: Strong uncomfortable conclusion"
+      ]
+    }
+  },
+  "visual_constraints": {
+    "scene_duration_max": "3s"
+  }
+}

@@ -1,0 +1,7 @@
+Generate minimalist thumbnail concept.
+
+Style:
+- white background
+- black doodle character
+- red highlight
+- 3 word text

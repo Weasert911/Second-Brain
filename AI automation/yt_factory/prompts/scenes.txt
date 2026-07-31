@@ -1,0 +1,12 @@
+Break script into MS Paint style scenes. 
+
+Constraint: New scene every 3 seconds maximum to maintain high visual pacing.
+
+Return JSON:
+[
+ {
+   "scene":1,
+   "visual":"",
+   "caption":""
+ }
+]

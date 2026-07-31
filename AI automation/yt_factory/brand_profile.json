@@ -1,0 +1,25 @@
+{
+  "channel_name": "Truly Dan",
+  "tone": [
+    "mysterious",
+    "detached",
+    "observational",
+    "slightly unsettling",
+    "clinical"
+  ],
+  "visual_style": [
+    "ms paint",
+    "black and white",
+    "red accents",
+    "simple doodles",
+    "stickman-ish"
+  ],
+  "avoid": [
+    "sigma",
+    "alpha male",
+    "cringe motivation",
+    "fake neuroscience"
+  ],
+  "identity": "Analysis of Human Thought Arc (AIT ARC) - a visual observation system documenting patterns in human behavior, social interaction, and decision-making",
+  "mission": "Every video breaks down small, often unnoticed moments in everyday life—how people speak, react, avoid conflict, and construct meaning in real time. No motivation. No advice. Just structured observation. Each 'ARC' is a recorded study of recurring human thought patterns."
+}
