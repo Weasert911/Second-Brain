@@ -1,0 +1,39 @@
+{
+	"nodes":[
+		{"id":"a1a397b330b1083e","x":-560,"y":360,"width":1560,"height":1180,"type":"group","label":"SETUP"},
+		{"id":"176c7e6396b8eac0","x":1520,"y":260,"width":1000,"height":720,"type":"group","label":"Workflow"},
+		{"id":"e8e0475c8e735c74","x":-80,"y":-440,"width":1080,"height":480,"type":"group","label":"Framework"},
+		{"id":"60df5a34012172d0","x":1460,"y":-700,"width":800,"height":400,"type":"group","label":"GOAL IS 5 BOOKINGS"},
+		{"id":"d8c22a1de14b7915","x":240,"y":843,"width":600,"height":474,"type":"group","label":"Canadian Accomodation Partners"},
+		{"id":"f89176dd4d9882bd","x":-420,"y":560,"width":540,"height":440,"type":"group","label":"Building credibility"},
+		{"id":"4d2f5736c5e5df54","x":-350,"y":1172,"width":400,"height":291,"type":"group","label":"FInd IND consultants"},
+		{"id":"f3ddddc67bcff6e7","x":311,"y":907,"width":329,"height":362,"type":"text","text":"GET 5 accommodation partners\n\nTARGET:\n\tToronto\n\tBrampton\n\tWaterloo\n\tVancouver\n\tMississauga\n\nContact:\n\tStudent Housing Companies\n\tProperty Managers\n\tCo-living Companies\n\tHomestay Providers\n"},
+		{"id":"0643de3fba7edd6c","x":186,"y":400,"width":250,"height":60,"type":"text","text":"Start"},
+		{"id":"9836813fb3a6738a","x":-341,"y":600,"width":415,"height":368,"type":"text","text":"Create:\n\t1. Professional Gmail\n\t2. LinkedIn page\n\t3. Website:\n\t\t   Helping Indian abroad cosultants secure verified student accommodation in canada\n\t4. Whatsapp Buisness\n\t5. 2 PDF THING:\n\t\t1. A PDF TEMPLATE FOR OUR AGENCY\n\t\t2. A PDF EXPLAINING OUR SERVICE\n\t\t3.  A PDF TEMPLATE FOR SHOWCASING PROPERTIES AVAILABLE"},
+		{"id":"8d245ef11d2cea0f","x":-277,"y":1223,"width":250,"height":205,"type":"text","text":"GOAL 20 consultants\n\nTarget: Tier 2 and 3 cities\n\tNew agencies\n\tSmall agencies\n\tIELTS centers\n\tVisa Offices"},
+		{"id":"a17b090396368352","x":1560,"y":300,"width":250,"height":280,"type":"text","text":"Consultent send:\n- Student Name\n- College\n- City\n- Budget\n- Move-in Date\n- Gender\n- Room Preference"},
+		{"id":"b6ffafc5dcb13650","x":2220,"y":700,"width":250,"height":60,"type":"text","text":"make the available properties PDF"},
+		{"id":"b69cbb7dafb625e6","x":2040,"y":300,"width":250,"height":252,"type":"text","text":"I call on the CANADIAN ACCOMOADATION ppl and get :\n- 3–5 verified options\n- Photos\n- Rent\n- Deposit\n- Distance to campus"},
+		{"id":"670b5a0c5e3be824","x":1685,"y":840,"width":250,"height":60,"type":"text","text":"Provide the pdf to tbhe consultant"},
+		{"id":"921658adc135e963","x":414,"y":-381,"width":250,"height":60,"type":"text","text":"ME"},
+		{"id":"2e009334dba89a70","x":-10,"y":-296,"width":250,"height":60,"type":"text","text":"Student"},
+		{"id":"88d760ed3425bbb0","x":146,"y":-130,"width":250,"height":60,"type":"text","text":"Indian Study abroad Consultant"},
+		{"id":"fab3fb231b0fddf8","x":664,"y":-130,"width":250,"height":60,"type":"text","text":"Accommodation Agents\n(Canada)"},
+		{"id":"f97cec41f9dd11c9","x":1512,"y":-643,"width":287,"height":60,"type":"text","text":"# ***GOAL IS 5 Bookings***"},
+		{"id":"55a8e66fcd8fa04b","x":1549,"y":-457,"width":250,"height":60,"type":"text","text":"LETS GO"},
+		{"id":"9cce4bb679a0872d","x":1940,"y":-583,"width":250,"height":83,"type":"text","text":"# ***MAKE LAKHS THIS YEAR***"}
+	],
+	"edges":[
+		{"id":"cd7c8cbd87487d2b","fromNode":"2e009334dba89a70","fromSide":"bottom","toNode":"88d760ed3425bbb0","toSide":"top"},
+		{"id":"2b1f82295ec9f080","fromNode":"88d760ed3425bbb0","fromSide":"bottom","toNode":"921658adc135e963","toSide":"top","label":"Commission"},
+		{"id":"07f1b8f0c42f91da","fromNode":"921658adc135e963","fromSide":"top","toNode":"fab3fb231b0fddf8","toSide":"bottom","label":"Commission"},
+		{"id":"000d2744f17945a8","fromNode":"0643de3fba7edd6c","fromSide":"bottom","toNode":"9836813fb3a6738a","toSide":"top"},
+		{"id":"391b3b3be72379cb","fromNode":"9836813fb3a6738a","fromSide":"right","toNode":"f3ddddc67bcff6e7","toSide":"left"},
+		{"id":"0e5a1d0a7bac8c8c","fromNode":"f3ddddc67bcff6e7","fromSide":"left","toNode":"8d245ef11d2cea0f","toSide":"right"},
+		{"id":"fc6668aec47c7820","fromNode":"a17b090396368352","fromSide":"right","toNode":"b69cbb7dafb625e6","toSide":"left"},
+		{"id":"9dcf5d274eb472e1","fromNode":"b69cbb7dafb625e6","fromSide":"bottom","toNode":"b6ffafc5dcb13650","toSide":"top"},
+		{"id":"b950f34219a673a6","fromNode":"b6ffafc5dcb13650","fromSide":"left","toNode":"670b5a0c5e3be824","toSide":"right"},
+		{"id":"59287b73c0a374a4","fromNode":"670b5a0c5e3be824","fromSide":"top","toNode":"a17b090396368352","toSide":"bottom"},
+		{"id":"8ac797aab060ec19","fromNode":"f97cec41f9dd11c9","fromSide":"bottom","toNode":"55a8e66fcd8fa04b","toSide":"top","color":"4","label":"GET 5 Bookings"}
+	]
+}

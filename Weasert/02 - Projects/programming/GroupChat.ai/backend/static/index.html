@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GroupChat AI</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x1F4AC;</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- LANDING PAGE -->
+        <div id="page-landing" class="page">
+            <div class="landing">
+                <div class="landing-hero">
+                    <div class="landing-logo"><div class="logo-mark">GC</div></div>
+                    <h1 class="landing-title">GroupChat <span class="accent">AI</span></h1>
+                    <p class="landing-desc">A private group chat where autonomous AI experts debate, challenge, and refine ideas.</p>
+                    <button id="btn-new-debate" class="btn-primary btn-lg">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                        Start New Debate
+                    </button>
+                </div>
+                <div class="landing-section">
+                    <h3 class="section-title">Try a debate</h3>
+                    <div class="example-grid" id="example-debates">
+                        <button class="example-card" data-topic="Should I build my startup with Rust?">
+                            <span class="example-icon">&#x1F980;</span>
+                            <span class="example-text">Should I build my startup with Rust?</span>
+                        </button>
+                        <button class="example-card" data-topic="Can an indie game survive without marketing?">
+                            <span class="example-icon">&#x1F3AE;</span>
+                            <span class="example-text">Can an indie game survive without marketing?</span>
+                        </button>
+                        <button class="example-card" data-topic="Best country for a game studio?">
+                            <span class="example-icon">&#x1F30D;</span>
+                            <span class="example-text">Best country for a game studio?</span>
+                        </button>
+                        <button class="example-card" data-topic="Is AI going to replace software engineers?">
+                            <span class="example-icon">&#x1F916;</span>
+                            <span class="example-text">Is AI going to replace software engineers?</span>
+                        </button>
+                        <button class="example-card" data-topic="Should we use microservices or monolith?">
+                            <span class="example-icon">&#x1F3D7;&#xFE0F;</span>
+                            <span class="example-text">Should we use microservices or monolith?</span>
+                        </button>
+                        <button class="example-card" data-topic="Best tech stack for a SaaS MVP?">
+                            <span class="example-icon">&#x26A1;</span>
+                            <span class="example-text">Best tech stack for a SaaS MVP?</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="landing-section" id="recent-section" style="display:none;">
+                    <h3 class="section-title">Recent debates</h3>
+                    <div id="recent-debates" class="recent-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHAT PAGE -->
+        <div id="page-chat" class="page" style="display:none;">
+            <aside id="sidebar">
+                <div class="sidebar-header">
+                    <div class="brand">
+                        <div class="logo-mark logo-sm">GC</div>
+                        <span class="brand-name">GroupChat <span class="accent">AI</span></span>
+                    </div>
+                    <button id="btn-close-sidebar" class="icon-btn" title="Close sidebar">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                    </button>
+                </div>
+                <div class="sidebar-section">
+                    <button id="btn-new-session" class="btn-primary btn-full">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                        New Debate
+                    </button>
+                </div>
+                <div class="sidebar-section">
+                    <div class="search-box">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                        <input type="text" id="search-input" placeholder="Search conversations..." autocomplete="off">
+                    </div>
+                </div>
+                <div class="sidebar-section sidebar-sessions">
+                    <div class="sidebar-section-header"><span>Conversations</span></div>
+                    <div id="sessions-list" class="sessions-list"></div>
+                </div>
+                <div class="sidebar-footer">
+                    <button id="btn-manage-agents" class="sidebar-footer-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                        Agents
+                    </button>
+                    <button id="btn-debate-settings" class="sidebar-footer-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                        Settings
+                    </button>
+                </div>
+            </aside>
+
+            <div id="main">
+                <header id="chat-header">
+                    <button id="btn-open-sidebar" class="icon-btn" title="Open sidebar">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+                    </button>
+                    <div class="chat-header-info">
+                        <h1 class="chat-title" id="chat-title">GroupChat AI</h1>
+                        <p class="chat-subtitle" id="chat-subtitle">Start a topic to begin</p>
+                    </div>
+                    <div class="header-actions">
+                        <div class="header-status">
+                            <span id="header-status-dot" class="status-dot"></span>
+                            <span id="header-status-text">connecting</span>
+                        </div>
+                        <button id="btn-search-toggle" class="icon-btn" title="Search">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                        </button>
+                        <button id="btn-export" class="icon-btn" title="Export">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        </button>
+                    </div>
+                </header>
+
+                <div id="search-bar" class="search-bar" style="display:none;">
+                    <input type="text" id="chat-search-input" placeholder="Search in conversation..." autocomplete="off">
+                    <button id="btn-close-search" class="icon-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <main id="chat-window">
+                    <div id="messages">
+                        <div class="empty-state" id="empty-state">
+                            <div class="empty-icon">
+                                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                            </div>
+                            <h2>Ask a question and watch a panel of experts debate it.</h2>
+                            <div class="empty-suggestions" id="empty-suggestions"></div>
+                        </div>
+                    </div>
+                    <div id="typing-indicator" class="typing-indicator hidden">
+                        <div class="typing-dots"><span></span><span></span><span></span></div>
+                        <span class="typing-text">Someone is typing...</span>
+                    </div>
+                    <div id="bottom-anchor"></div>
+                </main>
+
+                <div id="chat-input-bar" class="chat-input-bar">
+                    <div class="input-actions-left">
+                        <button id="btn-special-actions" class="icon-btn" title="Special actions">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+                        </button>
+                    </div>
+                    <div class="input-wrapper">
+                        <textarea id="user-input" placeholder="Type a message..." rows="1"></textarea>
+                    </div>
+                    <button id="btn-send-msg" class="btn-send" disabled>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- AGENTS PANEL -->
+        <div id="page-agents" class="page" style="display:none;">
+            <div class="panel-page">
+                <div class="panel-header">
+                    <button class="btn-back icon-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    </button>
+                    <h2>Manage Agents</h2>
+                    <button id="btn-create-agent" class="btn-primary btn-sm">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                        New Agent
+                    </button>
+                </div>
+                <div id="agents-list" class="agents-grid"></div>
+            </div>
+        </div>
+
+        <!-- SETTINGS PANEL -->
+        <div id="page-settings" class="page" style="display:none;">
+            <div class="panel-page">
+                <div class="panel-header">
+                    <button class="btn-back icon-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    </button>
+                    <h2>Debate Settings</h2>
+                </div>
+                <div class="settings-form">
+                    <div class="setting-group">
+                        <label class="setting-label">Debate Mode</label>
+                        <div class="mode-grid" id="mode-grid">
+                            <button class="mode-btn active" data-mode="discussion">
+                                <span class="mode-icon">&#x1F4AC;</span>
+                                <span class="mode-name">Discussion</span>
+                                <span class="mode-desc">Open conversation</span>
+                            </button>
+                            <button class="mode-btn" data-mode="brainstorm">
+                                <span class="mode-icon">&#x1F4A1;</span>
+                                <span class="mode-name">Brainstorm</span>
+                                <span class="mode-desc">Generate ideas</span>
+                            </button>
+                            <button class="mode-btn" data-mode="decision">
+                                <span class="mode-icon">&#x2696;&#xFE0F;</span>
+                                <span class="mode-name">Decision</span>
+                                <span class="mode-desc">Reach a verdict</span>
+                            </button>
+                            <button class="mode-btn" data-mode="research">
+                                <span class="mode-icon">&#x1F52C;</span>
+                                <span class="mode-name">Research</span>
+                                <span class="mode-desc">Evidence-based</span>
+                            </button>
+                            <button class="mode-btn" data-mode="devils_advocate">
+                                <span class="mode-icon">&#x1F608;</span>
+                                <span class="mode-name">Devil's Advocate</span>
+                                <span class="mode-desc">Challenge everything</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="setting-group">
+                        <label class="setting-label">Debate Speed</label>
+                        <div class="slider-row">
+                            <input type="range" id="speed-slider" min="0.5" max="3" step="0.1" value="1">
+                            <span id="speed-value">1.0x</span>
+                        </div>
+                    </div>
+                    <div class="setting-group">
+                        <label class="setting-label">Max Messages</label>
+                        <input type="number" id="max-messages" class="setting-input" value="200" min="10" max="1000">
+                    </div>
+                    <div class="setting-group">
+                        <label class="setting-label">Max Tokens</label>
+                        <input type="number" id="max-tokens" class="setting-input" value="500000" min="1000" max="10000000" step="1000">
+                    </div>
+                    <button id="btn-save-settings" class="btn-primary btn-full" style="margin-top:16px;">Save Settings</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPECIAL ACTIONS POPUP -->
+        <div id="special-actions-popup" class="popup hidden">
+            <button class="popup-item" data-action="challenge_all">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Challenge All
+            </button>
+            <button class="popup-item" data-action="explain_further">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                Explain Further
+            </button>
+            <button class="popup-item" data-action="what_are_we_missing">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                What Are We Missing?
+            </button>
+            <button class="popup-item" data-action="reach_conclusion">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                Reach Conclusion
+            </button>
+        </div>
+
+        <!-- MESSAGE CONTEXT MENU -->
+        <div id="msg-context-menu" class="popup hidden">
+            <button class="popup-item" data-action="copy">Copy</button>
+            <button class="popup-item" data-action="bookmark">Bookmark</button>
+            <button class="popup-item" data-action="pin">Pin</button>
+            <button class="popup-item" data-action="challenge_msg">Challenge</button>
+            <button class="popup-item" data-action="expand_msg">Expand</button>
+            <button class="popup-item" data-action="fact_check">Fact Check</button>
+        </div>
+
+        <!-- EXPORT POPUP -->
+        <div id="export-popup" class="popup hidden">
+            <button class="popup-item" data-format="markdown">Export as Markdown</button>
+            <button class="popup-item" data-format="text">Export as Text</button>
+            <button class="popup-item" data-format="json">Export as JSON</button>
+        </div>
+
+        <!-- TOAST -->
+        <div id="toast" class="toast hidden"></div>
+    </div>
+    <script src="/static/app.js"></script>
+</body>
+</html>
